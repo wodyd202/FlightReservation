@@ -1,5 +1,13 @@
 package user;
 
+import com.ljy.flightreservation.user.application.UserCommandRepository;
+import com.ljy.flightreservation.user.domain.agg.RegisterUserValidator;
+import com.ljy.flightreservation.user.domain.agg.User;
+import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
+import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
+import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.value.Password;
+import com.ljy.flightreservation.user.domain.value.UserId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

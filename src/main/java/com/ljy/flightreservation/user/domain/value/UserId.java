@@ -1,5 +1,6 @@
-package user;
+package com.ljy.flightreservation.user.domain.value;
 
+import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
 import lombok.EqualsAndHashCode;
 import org.springframework.util.StringUtils;
 

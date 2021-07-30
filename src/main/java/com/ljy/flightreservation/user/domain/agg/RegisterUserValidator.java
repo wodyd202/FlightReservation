@@ -1,4 +1,8 @@
-package user;
+package com.ljy.flightreservation.user.domain.agg;
+
+import com.ljy.flightreservation.user.application.UserCommandRepository;
+import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
+import com.ljy.flightreservation.user.domain.value.UserId;
 
 import java.util.Optional;
 

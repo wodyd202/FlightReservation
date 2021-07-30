@@ -1,4 +1,4 @@
-package user;
+package com.ljy.flightreservation.user.domain.value;
 
 public enum UserState {
     CREATED(0), DELETED(1);

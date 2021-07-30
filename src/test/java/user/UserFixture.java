@@ -1,6 +1,8 @@
 package user;
 
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import com.ljy.flightreservation.user.domain.agg.User;
+import com.ljy.flightreservation.user.domain.value.Password;
+import com.ljy.flightreservation.user.domain.value.UserId;
 
 import static org.springframework.security.crypto.factory.PasswordEncoderFactories.createDelegatingPasswordEncoder;
 

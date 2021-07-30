@@ -1,7 +1,7 @@
-package user;
+package com.ljy.flightreservation.user.domain.value;
 
+import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import lombok.EqualsAndHashCode;
-import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EqualsAndHashCode(of = "password")

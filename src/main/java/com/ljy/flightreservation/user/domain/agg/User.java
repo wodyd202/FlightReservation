@@ -1,6 +1,11 @@
-package user;
+package com.ljy.flightreservation.user.domain.agg;
 
 
+import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
+import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.value.Password;
+import com.ljy.flightreservation.user.domain.value.UserId;
+import com.ljy.flightreservation.user.domain.value.UserState;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
