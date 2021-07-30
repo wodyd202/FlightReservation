@@ -1,11 +1,14 @@
 package user;
 
+import com.ljy.flightreservation.user.application.PassportRepository;
 import com.ljy.flightreservation.user.application.UserCommandRepository;
 import com.ljy.flightreservation.user.domain.agg.RegisterUserValidator;
 import com.ljy.flightreservation.user.domain.agg.User;
 import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
+import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
 import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
 import org.junit.jupiter.api.DisplayName;
@@ -111,7 +114,19 @@ public class UserTest {
                 .thenReturn(Optional.of(mockUser));
 
         assertThrows(AlreadyExistUserException.class, ()->{
-            new RegisterUserValidator(userCommandRepository).validation(new UserId("userid"));
+            new RegisterUserValidator(userCommandRepository, mock(PassportRepository.class)).validation(new UserId("userid"), null);
+        });
+    }
+
+    @Test
+    @DisplayName("사용자 생성시 여권번호를 입력했지만 여권번호가 유효하지 않음")
+    void invalidPassportWhenRegister(){
+        PassportRepository passportRepository = mock(PassportRepository.class);
+        when(passportRepository.checkPassport("X10382738"))
+                .thenReturn(false);
+        
+        assertThrows(InvalidPassportException.class, ()->{
+            new RegisterUserValidator(mock(UserCommandRepository.class), passportRepository).validation(new UserId("userid"), new Passport("X10382738"));
         });
     }
 
@@ -121,7 +136,7 @@ public class UserTest {
         User user = aUser().build();
 
         UserCommandRepository userCommandRepository = mock(UserCommandRepository.class);
-        user.register(new RegisterUserValidator(userCommandRepository));
+        user.register(new RegisterUserValidator(userCommandRepository, mock(PassportRepository.class)));
 
         assertTrue(user.getState().isCreated());
         assertNotNull(user.getCreateDateTime());

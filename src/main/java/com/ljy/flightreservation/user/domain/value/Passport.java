@@ -1,7 +1,7 @@
-package user;
+package com.ljy.flightreservation.user.domain.value;
 
+import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
 import lombok.EqualsAndHashCode;
-import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 
 import java.util.regex.Pattern;
@@ -18,5 +18,13 @@ public class Passport {
             throw new InvalidPassportException("invalid passport");
         }
         this.passport = passport;
+    }
+
+    public String get() {
+        return passport;
+    }
+
+    public boolean isEmpty() {
+        return !StringUtils.hasText(passport);
     }
 }

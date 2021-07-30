@@ -3,6 +3,7 @@ package com.ljy.flightreservation.user.domain.agg;
 
 import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
 import com.ljy.flightreservation.user.domain.value.UserState;
@@ -18,10 +19,11 @@ public class User {
     private UserId id;
     private Password password;
     private UserState state;
+    private Passport passport;
     private LocalDateTime createDateTime;
 
     public void register(RegisterUserValidator registerUserValidator) {
-        registerUserValidator.validation(this.id);
+        registerUserValidator.validation(id, passport);
         this.state = UserState.CREATED;
         this.createDateTime = LocalDateTime.now();
     }

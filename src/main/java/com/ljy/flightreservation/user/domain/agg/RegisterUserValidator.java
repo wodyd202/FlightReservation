@@ -1,22 +1,41 @@
 package com.ljy.flightreservation.user.domain.agg;
 
+import com.ljy.flightreservation.user.application.PassportRepository;
 import com.ljy.flightreservation.user.application.UserCommandRepository;
 import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
+import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
+import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.UserId;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class RegisterUserValidator {
     private final UserCommandRepository userRepository;
+    private final PassportRepository passportRepository;
 
-    public RegisterUserValidator(UserCommandRepository userCommandRepository) {
+    public RegisterUserValidator(UserCommandRepository userCommandRepository, PassportRepository passportRepository) {
         this.userRepository = userCommandRepository;
+        this.passportRepository = passportRepository;
     }
 
-    public void validation(UserId id) {
-        Optional<User> findUser = userRepository.findByUserId(id);
+    public void validation(UserId id, Passport passport) {
+        Optional<User> findUser = getUser(id);
         if(findUser.isPresent()){
             throw new AlreadyExistUserException("already exist id of user");
+        }
+        if(!Objects.isNull(passport) && !passport.isEmpty()){
+            passportValidation(passport);
+        }
+    }
+
+    private Optional<User> getUser(UserId id) {
+        return userRepository.findByUserId(id);
+    }
+
+    private void passportValidation(Passport passport) {
+        if(!passportRepository.checkPassport(passport.get())){
+            throw new InvalidPassportException("invalid passport");
         }
     }
 }
