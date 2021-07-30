@@ -74,6 +74,22 @@ public class UserTest {
         });
     }
 
+    @ParameterizedTest
+    @DisplayName("여권 번호는 빈값을 허용하지만 빈값이 아닌 경우 유효해야함")
+    @ValueSource(strings = {"invalid", "가나다", "Xz0382738"})
+    void invalidPassport(String passport){
+        assertThrows(InvalidPassportException.class, ()->{
+           new Passport(passport);
+        });
+    }
+
+    @Test
+    @DisplayName("여권 번호는 빈값 허용")
+    void emptyPassport(){
+        Passport passport = new Passport("");
+        assertEquals(passport, new Passport(""));
+    }
+
     @Test
     void newUser(){
         PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
