@@ -27,15 +27,24 @@ public class UserTest {
     @ParameterizedTest
     @DisplayName("숫자 및 영문만 입력 가능")
     @ValueSource(strings = {"실패","  test", " test ", "test ", "ㄱㄴㄷㄹ"})
-    void invalidEmail(String email) {
+    void invalidId1(String id) {
         assertThrows(InvalidUserIdException.class, ()->{
-            new UserId(email);
+            new UserId(id);
+        });
+    }
+
+    @ParameterizedTest
+    @DisplayName("회원 아이디는 4자 이상 15자 이하만 허용")
+    @ValueSource(strings = {"abc", "abcdefgabcdefgabcdefg"})
+    void invalidId2(String id){
+        assertThrows(InvalidUserIdException.class, ()->{
+            new UserId(id);
         });
     }
 
     @Test
     @DisplayName("아이디는 비워져 있으면 안됨")
-    void emptyEmail(){
+    void emptyId(){
         assertThrows(InvalidUserIdException.class, ()->{
            new UserId("");
         });
@@ -43,9 +52,9 @@ public class UserTest {
 
     @Test
     @DisplayName("아이디 형식이 유효함")
-    void successEmail(){
-        UserId email = new UserId("test1234");
-        assertEquals(email, new UserId("test1234"));
+    void successId(){
+        UserId id = new UserId("test1234");
+        assertEquals(id, new UserId("test1234"));
     }
 
     @Test

@@ -27,5 +27,8 @@ public class UserId {
         if(!PATTEN.matcher(id).find()){
             throw new InvalidUserIdException("invalid id");
         }
+        if(id.length() < 4 || id.length() > 15){
+            throw new InvalidUserIdException("id length must be 4 or more and 15 or less");
+        }
     }
 }
