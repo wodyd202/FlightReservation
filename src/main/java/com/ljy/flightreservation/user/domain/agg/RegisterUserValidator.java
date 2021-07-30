@@ -12,11 +12,11 @@ import java.util.Optional;
 
 public class RegisterUserValidator {
     private final UserCommandRepository userRepository;
-    private final PassportRepository passportRepository;
+    private final ChangePassportValidator passportValidator;
 
-    public RegisterUserValidator(UserCommandRepository userCommandRepository, PassportRepository passportRepository) {
+    public RegisterUserValidator(UserCommandRepository userCommandRepository, ChangePassportValidator passportValidator) {
         this.userRepository = userCommandRepository;
-        this.passportRepository = passportRepository;
+        this.passportValidator = passportValidator;
     }
 
     public void validation(UserId id, Passport passport) {
@@ -25,17 +25,11 @@ public class RegisterUserValidator {
             throw new AlreadyExistUserException("already exist id of user");
         }
         if(!Objects.isNull(passport) && !passport.isEmpty()){
-            passportValidation(passport);
+            passportValidator.validation(passport);
         }
     }
 
     private Optional<User> getUser(UserId id) {
         return userRepository.findByUserId(id);
-    }
-
-    private void passportValidation(Passport passport) {
-        if(!passportRepository.checkPassport(passport.get())){
-            throw new InvalidPassportException("invalid passport");
-        }
     }
 }

@@ -47,12 +47,19 @@ public class User {
         }
     }
 
+    public void changePassport(ChangePassportValidator changePassportValidator,
+                               Passport passport) {
+        changePassportValidator.validation(passport);
+        this.passport = passport;
+    }
+
     @Builder
-    public User(UserId id, Password password) {
+    public User(UserId id, Password password, Passport passport) {
         verifyNotNullId(id);
         verifyNotNullPassword(password);
         this.id = id;
         this.password = password;
+        this.passport = passport;
     }
 
     private void verifyNotNullId(UserId id) {
@@ -66,5 +73,6 @@ public class User {
             throw new InvalidPasswordException("password must not be null");
         }
     }
+
 
 }

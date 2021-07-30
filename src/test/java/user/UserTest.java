@@ -2,6 +2,7 @@ package user;
 
 import com.ljy.flightreservation.user.application.PassportRepository;
 import com.ljy.flightreservation.user.application.UserCommandRepository;
+import com.ljy.flightreservation.user.domain.agg.ChangePassportValidator;
 import com.ljy.flightreservation.user.domain.agg.RegisterUserValidator;
 import com.ljy.flightreservation.user.domain.agg.User;
 import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
@@ -114,7 +115,7 @@ public class UserTest {
                 .thenReturn(Optional.of(mockUser));
 
         assertThrows(AlreadyExistUserException.class, ()->{
-            new RegisterUserValidator(userCommandRepository, mock(PassportRepository.class)).validation(new UserId("userid"), null);
+            new RegisterUserValidator(userCommandRepository, mock(ChangePassportValidator.class)).validation(new UserId("userid"), null);
         });
     }
 
@@ -126,7 +127,7 @@ public class UserTest {
                 .thenReturn(false);
         
         assertThrows(InvalidPassportException.class, ()->{
-            new RegisterUserValidator(mock(UserCommandRepository.class), passportRepository).validation(new UserId("userid"), new Passport("X10382738"));
+            new RegisterUserValidator(mock(UserCommandRepository.class), new ChangePassportValidator(passportRepository)).validation(new UserId("userid"), new Passport("X10382738"));
         });
     }
 
@@ -136,7 +137,7 @@ public class UserTest {
         User user = aUser().build();
 
         UserCommandRepository userCommandRepository = mock(UserCommandRepository.class);
-        user.register(new RegisterUserValidator(userCommandRepository, mock(PassportRepository.class)));
+        user.register(new RegisterUserValidator(userCommandRepository, mock(ChangePassportValidator.class)));
 
         assertTrue(user.getState().isCreated());
         assertNotNull(user.getCreateDateTime());
@@ -160,6 +161,32 @@ public class UserTest {
 
         assertThrows(InvalidPasswordException.class, ()->{
             user.changePassword("notEqPassword", "changePassword", passwordEncoder);
+        });
+    }
+
+    @Test
+    @DisplayName("여권 번호 변경")
+    void changePassport() {
+        PassportRepository passportRepository = mock(PassportRepository.class);
+        when(passportRepository.checkPassport("X10382738"))
+                .thenReturn(true);
+
+        User user = aUser().build();
+        user.changePassport(new ChangePassportValidator(passportRepository), new Passport("X10382738"));
+        assertEquals(user.getPassport(), new Passport("X10382738"));
+    }
+
+    @Test
+    @DisplayName("여권 번호 변경시 여권번호가 유효하지 않음")
+    void invalidPassportWhenChangePassport(){
+        PassportRepository passportRepository = mock(PassportRepository.class);
+        when(passportRepository.checkPassport("X10382738"))
+                .thenReturn(false);
+
+        User user = aUser().build();
+
+        assertThrows(InvalidPassportException.class, ()->{
+            user.changePassport(new ChangePassportValidator(passportRepository), new Passport("X10382738"));
         });
     }
 
