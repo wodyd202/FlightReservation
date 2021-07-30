@@ -1,7 +1,10 @@
 package user;
 
+import lombok.EqualsAndHashCode;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@EqualsAndHashCode(of = "password")
 public class Password {
     private final String password;
 
@@ -18,5 +21,9 @@ public class Password {
 
     public String get() {
         return password;
+    }
+
+    public boolean equalsOriginPassword(String originPassword, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(originPassword, password);
     }
 }

@@ -94,4 +94,45 @@ public class UserTest {
         assertNotNull(user.getCreateDateTime());
     }
 
+    @Test
+    @DisplayName("비밀번호 변경")
+    void changePassword(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        User user = aUser().password(new Password("password", passwordEncoder)).build();
+        user.changePassword("password", "changePassword", passwordEncoder);
+
+        assertTrue(passwordEncoder.matches("changePassword", user.getPassword().get()));
+    }
+
+    @Test
+    @DisplayName("비밀번호 변경시 기존 비밀번호가 일치하지 않음")
+    void notEqOriginPasswordWhenChangePassword(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        User user = aUser().password(new Password("password", passwordEncoder)).build();
+
+        assertThrows(InvalidPasswordException.class, ()->{
+            user.changePassword("notEqPassword", "changePassword", passwordEncoder);
+        });
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴시 기존 비밀번호가 일치하지 않음")
+    void notEqOriginPasswordWhenWithdrawal(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        User user = aUser().password(new Password("password", passwordEncoder)).build();
+
+        assertThrows(InvalidPasswordException.class, ()-> {
+            user.withdrawal("notEqPassword", passwordEncoder);
+        });
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴")
+    void withdrawal(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        User user = aUser().password(new Password("password", passwordEncoder)).build();
+
+        user.withdrawal("password", passwordEncoder);
+        assertTrue(user.getState().isDeleted());
+    }
 }

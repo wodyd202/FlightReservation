@@ -3,6 +3,7 @@ package user;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -18,6 +19,25 @@ public class User {
         registerUserValidator.validation(this.id);
         this.state = UserState.CREATED;
         this.createDateTime = LocalDateTime.now();
+    }
+
+    public void changePassword(String originPassword,
+                               String changePassword,
+                               PasswordEncoder passwordEncoder) {
+        verifyEqualsOriginPassword(originPassword, passwordEncoder);
+        this.password = new Password(changePassword, passwordEncoder);
+    }
+
+    public void withdrawal(String originPassword,
+                           PasswordEncoder passwordEncoder) {
+        verifyEqualsOriginPassword(originPassword, passwordEncoder);
+        this.state = UserState.DELETED;
+    }
+
+    private void verifyEqualsOriginPassword(String originPassword, PasswordEncoder passwordEncoder) {
+        if(!password.equalsOriginPassword(originPassword, passwordEncoder)){
+            throw new InvalidPasswordException("not equals origin password");
+        }
     }
 
     @Builder
@@ -39,4 +59,5 @@ public class User {
             throw new InvalidPasswordException("password must not be null");
         }
     }
+
 }
