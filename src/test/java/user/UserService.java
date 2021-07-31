@@ -13,6 +13,8 @@ import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.UUID;
+
 import static user.UserServiceHelper.findByUserId;
 
 public class UserService {
@@ -64,5 +66,21 @@ public class UserService {
         User user = findByUserId(userRepo, userId);
         user.withdrawal(withdrawalCommand.getOriginPassword(), passwordEncoder);
         userRepo.save(user);
+    }
+
+    public void temporaryPassword(UserId userId) {
+        User user = findByUserId(userRepo, userId);
+        user.temporaryPassword(createTemporaryPassword());
+        userRepo.save(user);
+    }
+
+    public void deposit(DepositMoney depositMoneyCommand, UserId userId) {
+        User user = findByUserId(userRepo, userId);
+        user.deposit(depositMoneyCommand.getMoney());
+        userRepo.save(user);
+    }
+
+    private Password createTemporaryPassword() {
+        return new Password(UUID.randomUUID().toString().substring(0,8), passwordEncoder);
     }
 }

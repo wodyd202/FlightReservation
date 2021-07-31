@@ -32,6 +32,7 @@ public class User {
     public void changePassword(String inputOriginPassword,
                                Password changePassword,
                                PasswordEncoder passwordEncoder) {
+        verifyCreatedUser();
         verifyEqualsOriginPassword(inputOriginPassword, passwordEncoder);
         this.password = changePassword;
     }

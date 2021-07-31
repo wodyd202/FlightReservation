@@ -9,5 +9,6 @@ import lombok.*;
 public class RegisterUser {
     private String id;
     private String password;
+    private String email;
     private String passport;
 }

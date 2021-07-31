@@ -37,6 +37,7 @@ public class UserServiceTest {
         RegisterUser userCommand = RegisterUser.builder()
                 .id("test123")
                 .password("password")
+                .email("test@test.com")
                 .build();
         UserMapper userMapper = new UserMapper(passwordEncoder);
         User user = userMapper.mapFrom(userCommand);
@@ -50,6 +51,7 @@ public class UserServiceTest {
         RegisterUser userCommand = RegisterUser.builder()
                 .id("test123")
                 .password("passowrd")
+                .email("test@test.com")
                 .build();
         UserModel registerUser = service.register(userCommand);
         Assertions.assertNotNull(registerUser);
@@ -58,16 +60,12 @@ public class UserServiceTest {
     @Test
     @DisplayName("비밀번호 변경")
     void changePassword() {
-        User mockUser = aUser().password(new Password("originPassword", passwordEncoder)).build();
-        mockUser.register(mock(RegisterUserValidator.class));
-        when(userRepo.findByUserId(new UserId("test123")))
-                .thenReturn(Optional.of(mockUser));
+        UserId userId = saveUser("test123", "originPassword");
 
         ChangePassword userCommand = ChangePassword.builder()
                 .changePassword("changePassword")
                 .originPassword("originPassword")
                 .build();
-        UserId userId = new UserId("test123");
         UserModel changePasswordUser = service.changePassword(userCommand, userId);
         assertTrue(passwordEncoder.matches("changePassword", changePasswordUser.getPassword()));
     }
@@ -75,12 +73,7 @@ public class UserServiceTest {
     @Test
     @DisplayName("여권 번호 변경")
     void changePassport() {
-        User mockUser = aUser().password(new Password("originPassword", passwordEncoder)).build();
-        mockUser.register(mock(RegisterUserValidator.class));
-        when(userRepo.findByUserId(new UserId("test123")))
-                .thenReturn(Optional.of(mockUser));
-
-        UserId userId = new UserId("test123");
+        UserId userId = saveUser("test123", "originPassword");
         ChangePassport changePassportCommand = new ChangePassport("X10382738");
         UserModel userModel = service.changePassport(changePassportCommand, userId);
 
@@ -90,16 +83,41 @@ public class UserServiceTest {
     @Test
     @DisplayName("회원 탈퇴")
     void withdrawal() {
-        User mockUser = aUser().password(new Password("originPassword", passwordEncoder)).build();
-        mockUser.register(mock(RegisterUserValidator.class));
-        when(userRepo.findByUserId(new UserId("test123")))
-                .thenReturn(Optional.of(mockUser));
-
-        UserId userId = new UserId("test123");
+        UserId userId = saveUser("test123", "originPassword");
         Withdrawal withdrawalCommand = new Withdrawal("originPassword");
 
         assertDoesNotThrow(() -> {
             service.withdrawal(withdrawalCommand, userId);
         });
+    }
+
+    @Test
+    @DisplayName("임시 비밀번호 발급")
+    void temporaryPassword() {
+        saveUser("test123", "originPassword");
+
+        UserId userId = new UserId("test123");
+        assertDoesNotThrow(()->{
+            service.temporaryPassword(userId);
+        });
+    }
+
+    @Test
+    @DisplayName("잔액 충전")
+    void deposit(){
+        UserId userId = saveUser("test123", "originPassword");
+
+        DepositMoney depositMoneyCommand = new DepositMoney(3000L);
+        assertDoesNotThrow(()->{
+            service.deposit(depositMoneyCommand, userId);
+        });
+    }
+
+    private UserId saveUser(String userId, String password){
+        User mockUser = aUser().password(new Password(password, passwordEncoder)).build();
+        mockUser.register(mock(RegisterUserValidator.class));
+        when(userRepo.findByUserId(new UserId(userId)))
+                .thenReturn(Optional.of(mockUser));
+        return new UserId(userId);
     }
 }

@@ -14,7 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -24,6 +23,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.crypto.factory.PasswordEncoderFactories.createDelegatingPasswordEncoder;
 import static user.UserFixture.aUser;
+import static user.UserFixture.aDeletedUser;
 
 public class UserTest {
 
@@ -180,6 +180,16 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("비밀번호 변경시 사용자가 CREATED 상태여야함")
+    void alreadyDeletedUserWhenChangePassword(){
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()->{
+            user.changePassword("password", new Password("changePassword", mock(PasswordEncoder.class)), mock(PasswordEncoder.class));
+        });
+    }
+
+    @Test
     @DisplayName("비밀번호 변경시 기존 비밀번호가 일치하지 않음")
     void notEqOriginPasswordWhenChangePassword(){
         PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
@@ -200,6 +210,20 @@ public class UserTest {
         User user = aUser().build();
         user.changePassport(new PassportValidator(passportRepository), new Passport("X10382738"));
         assertEquals(user.getPassport(), new Passport("X10382738"));
+    }
+
+    @Test
+    @DisplayName("여권 번호 변경시 사용자가 CREATED 상태여야함")
+    void alreadyDeletedUserWhenChangePassport(){
+        PassportRepository passportRepository = mock(PassportRepository.class);
+        when(passportRepository.checkPassport("X10382738"))
+                .thenReturn(true);
+
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()->{
+            user.changePassport(new PassportValidator(passportRepository), new Passport("X10382738"));
+        });
     }
 
     @Test
@@ -238,13 +262,34 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("이미 회원탈퇴한 아이디")
+    void alreadyDeletedUserWhenWithdrawal(){
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()->{
+            user.withdrawal("password", mock(PasswordEncoder.class));
+        });
+    }
+
+    @Test
     @DisplayName("임시 비밀번호 발급")
     void temporaryPassword(){
         PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
         User user = aUser().build();
 
         user.temporaryPassword(new Password("temporary", passwordEncoder));
+
         assertTrue(passwordEncoder.matches("temporary", user.getPassword().get()));
+    }
+
+    @Test
+    @DisplayName("이미 탈퇴한 회원이 임시 비밀번호를 발급받을 수 없음")
+    void alreadyDeletedUserWhenTemporaryPassword(){
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()-> {
+            user.temporaryPassword(mock(Password.class));
+        });
     }
 
     @Test
@@ -256,12 +301,32 @@ public class UserTest {
     }
 
     @Test
+    @DisplayName("이미 탈퇴한 아이디에 입금할 수 없음")
+    void alreadyDeletedUserWhenDeposit(){
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()->{
+           user.deposit(3000L);
+        });
+    }
+
+    @Test
     @DisplayName("지불")
     void pay(){
         User user = aUser().build();
         user.deposit(30000L);
         user.pay(3000L);
         assertEquals(27000L, user.getMoney().get());
+    }
+
+    @Test
+    @DisplayName("이미 탈퇴한 아이디가 결제할 수 없음")
+    void alreadyDeletedUserWhenPay(){
+        User user = aDeletedUser();
+
+        assertThrows(AlreadyDeletedUserException.class, ()->{
+           user.pay(3000L);
+        });
     }
 
 }

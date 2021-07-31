@@ -4,6 +4,7 @@ import com.ljy.flightreservation.user.domain.agg.User;
 import com.ljy.flightreservation.user.domain.value.Email;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.springframework.security.crypto.factory.PasswordEncoderFactories.createDelegatingPasswordEncoder;
 
@@ -13,5 +14,13 @@ abstract  public class UserFixture {
                     .id(new UserId("userid"))
                     .email(new Email("test@test.com"))
                     .password(new Password("password", createDelegatingPasswordEncoder()));
+    }
+
+    public static User aDeletedUser(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        Password password = new Password("password", passwordEncoder);
+        User user = aUser().password(password).build();
+        user.withdrawal("password", passwordEncoder);
+        return user;
     }
 }
