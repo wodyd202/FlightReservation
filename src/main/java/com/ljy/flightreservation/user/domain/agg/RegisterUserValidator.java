@@ -1,9 +1,7 @@
 package com.ljy.flightreservation.user.domain.agg;
 
-import com.ljy.flightreservation.user.application.PassportRepository;
-import com.ljy.flightreservation.user.application.UserCommandRepository;
+import com.ljy.flightreservation.user.application.UserRepository;
 import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
-import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
 import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.UserId;
 
@@ -11,10 +9,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class RegisterUserValidator {
-    private final UserCommandRepository userRepository;
+    private final UserRepository userRepository;
     private final ChangePassportValidator passportValidator;
 
-    public RegisterUserValidator(UserCommandRepository userCommandRepository, ChangePassportValidator passportValidator) {
+    public RegisterUserValidator(UserRepository userCommandRepository, ChangePassportValidator passportValidator) {
         this.userRepository = userCommandRepository;
         this.passportValidator = passportValidator;
     }

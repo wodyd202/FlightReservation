@@ -1,7 +1,7 @@
 package user;
 
 import com.ljy.flightreservation.user.application.PassportRepository;
-import com.ljy.flightreservation.user.application.UserCommandRepository;
+import com.ljy.flightreservation.user.application.UserRepository;
 import com.ljy.flightreservation.user.domain.agg.ChangePassportValidator;
 import com.ljy.flightreservation.user.domain.agg.RegisterUserValidator;
 import com.ljy.flightreservation.user.domain.agg.User;
@@ -9,6 +9,7 @@ import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException
 import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
 import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.model.ChangePasswordCommand;
 import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
@@ -108,7 +109,7 @@ public class UserTest {
     @Test
     @DisplayName("해당 아이디를 가진 사용자가 이미 존재함")
     void alreadyExistUser(){
-        UserCommandRepository userCommandRepository = mock(UserCommandRepository.class);
+        UserRepository userCommandRepository = mock(UserRepository.class);
         User mockUser = aUser().build();
         mockUser.register(mock(RegisterUserValidator.class));
         when(userCommandRepository.findByUserId(new UserId("userid")))
@@ -127,7 +128,7 @@ public class UserTest {
                 .thenReturn(false);
         
         assertThrows(InvalidPassportException.class, ()->{
-            new RegisterUserValidator(mock(UserCommandRepository.class), new ChangePassportValidator(passportRepository)).validation(new UserId("userid"), new Passport("X10382738"));
+            new RegisterUserValidator(mock(UserRepository.class), new ChangePassportValidator(passportRepository)).validation(new UserId("userid"), new Passport("X10382738"));
         });
     }
 
@@ -136,7 +137,7 @@ public class UserTest {
     void register(){
         User user = aUser().build();
 
-        UserCommandRepository userCommandRepository = mock(UserCommandRepository.class);
+        UserRepository userCommandRepository = mock(UserRepository.class);
         user.register(new RegisterUserValidator(userCommandRepository, mock(ChangePassportValidator.class)));
 
         assertTrue(user.getState().isCreated());
@@ -148,7 +149,12 @@ public class UserTest {
     void changePassword(){
         PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
         User user = aUser().password(new Password("password", passwordEncoder)).build();
-        user.changePassword("password", "changePassword", passwordEncoder);
+
+        user.changePassword(ChangePasswordCommand.builder()
+                                                 .changePassword("changePassword")
+                                                 .originPassword("password")
+                                                 .build(),
+                            passwordEncoder);
 
         assertTrue(passwordEncoder.matches("changePassword", user.getPassword().get()));
     }
@@ -160,7 +166,11 @@ public class UserTest {
         User user = aUser().password(new Password("password", passwordEncoder)).build();
 
         assertThrows(InvalidPasswordException.class, ()->{
-            user.changePassword("notEqPassword", "changePassword", passwordEncoder);
+            user.changePassword(ChangePasswordCommand.builder()
+                                                     .changePassword("notEqPassword")
+                                                     .originPassword("password")
+                                                     .build(),
+                            passwordEncoder);
         });
     }
 

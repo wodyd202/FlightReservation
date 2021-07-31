@@ -31,4 +31,8 @@ public class UserId {
             throw new InvalidUserIdException("id length must be 4 or more and 15 or less");
         }
     }
+
+    public String get() {
+        return id;
+    }
 }

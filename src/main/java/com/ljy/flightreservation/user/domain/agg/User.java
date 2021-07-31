@@ -3,6 +3,7 @@ package com.ljy.flightreservation.user.domain.agg;
 
 import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.model.ChangePasswordCommand;
 import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
@@ -28,11 +29,10 @@ public class User {
         this.createDateTime = LocalDateTime.now();
     }
 
-    public void changePassword(String originPassword,
-                               String changePassword,
+    public void changePassword(ChangePasswordCommand command,
                                PasswordEncoder passwordEncoder) {
-        verifyEqualsOriginPassword(originPassword, passwordEncoder);
-        this.password = new Password(changePassword, passwordEncoder);
+        verifyEqualsOriginPassword(command.getOriginPassword(), passwordEncoder);
+        this.password = new Password(command.getChangePassword(), passwordEncoder);
     }
 
     public void withdrawal(String originPassword,
