@@ -1,6 +1,7 @@
 package user;
 
 import com.ljy.flightreservation.user.domain.agg.User;
+import com.ljy.flightreservation.user.domain.value.Email;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
 
@@ -10,6 +11,7 @@ abstract  public class UserFixture {
     public static User.UserBuilder aUser(){
         return User.builder()
                     .id(new UserId("userid"))
+                    .email(new Email("test@test.com"))
                     .password(new Password("password", createDelegatingPasswordEncoder()));
     }
 }

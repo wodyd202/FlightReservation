@@ -13,7 +13,7 @@ public class UserId {
 
     public UserId(String id) {
         verifyNotEmpty(id);
-        verifyValidation(id);
+        validation(id);
         this.id = id;
     }
 
@@ -23,7 +23,7 @@ public class UserId {
         }
     }
 
-    private void verifyValidation(String id) {
+    private void validation(String id) {
         if(!PATTEN.matcher(id).find()){
             throw new InvalidUserIdException("invalid id");
         }

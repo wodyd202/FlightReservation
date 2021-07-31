@@ -5,10 +5,8 @@ import com.ljy.flightreservation.user.application.UserRepository;
 import com.ljy.flightreservation.user.domain.agg.PassportValidator;
 import com.ljy.flightreservation.user.domain.agg.RegisterUserValidator;
 import com.ljy.flightreservation.user.domain.agg.User;
-import com.ljy.flightreservation.user.domain.exception.AlreadyExistUserException;
-import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
-import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
-import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
+import com.ljy.flightreservation.user.domain.exception.*;
+import com.ljy.flightreservation.user.domain.value.Email;
 import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
@@ -16,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -79,6 +78,30 @@ public class UserTest {
     }
 
     @ParameterizedTest
+    @DisplayName("이메일 형식이 유효해야함")
+    @ValueSource(strings = {"invalid", "invalid@","@invalid.com"})
+    void invalidEmail(String email){
+        assertThrows(InvalidEmailException.class, ()->{
+            new Email(email);
+        });
+    }
+
+    @Test
+    @DisplayName("이메일은 빈값을 허용하지 않음")
+    void emptyEmail(){
+        assertThrows(InvalidEmailException.class, ()->{
+            new Email("");
+        });
+    }
+
+    @Test
+    @DisplayName("이메일 형식이 유효함")
+    void successEmail(){
+        Email email = new Email("test@test.com");
+        assertEquals(email.get(), "test@test.com");
+    }
+
+    @ParameterizedTest
     @DisplayName("여권 번호는 빈값을 허용하지만 빈값이 아닌 경우 유효해야함")
     @ValueSource(strings = {"invalid", "가나다", "Xz0382738"})
     void invalidPassport(String passport){
@@ -99,6 +122,7 @@ public class UserTest {
         PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
         User user = User.builder()
                         .id(new UserId("ghdrlfehd"))
+                        .email(new Email("test@test.com"))
                         .password(new Password("password", passwordEncoder))
                         .build();
         assertEquals(user.getId(), new UserId("ghdrlfehd"));
@@ -125,7 +149,7 @@ public class UserTest {
         PassportRepository passportRepository = mock(PassportRepository.class);
         when(passportRepository.checkPassport("X10382738"))
                 .thenReturn(false);
-        
+
         assertThrows(InvalidPassportException.class, ()->{
             new RegisterUserValidator(mock(UserRepository.class), new PassportValidator(passportRepository)).validation(new UserId("userid"), new Passport("X10382738"));
         });
@@ -212,4 +236,32 @@ public class UserTest {
         user.withdrawal("password", passwordEncoder);
         assertTrue(user.getState().isDeleted());
     }
+
+    @Test
+    @DisplayName("임시 비밀번호 발급")
+    void temporaryPassword(){
+        PasswordEncoder passwordEncoder = createDelegatingPasswordEncoder();
+        User user = aUser().build();
+
+        user.temporaryPassword(new Password("temporary", passwordEncoder));
+        assertTrue(passwordEncoder.matches("temporary", user.getPassword().get()));
+    }
+
+    @Test
+    @DisplayName("입금")
+    void deposit(){
+        User user = aUser().build();
+        user.deposit(30000L);
+        assertEquals(30000L, user.getMoney().get());
+    }
+
+    @Test
+    @DisplayName("지불")
+    void pay(){
+        User user = aUser().build();
+        user.deposit(30000L);
+        user.pay(3000L);
+        assertEquals(27000L, user.getMoney().get());
+    }
+
 }
