@@ -13,7 +13,7 @@ public class UserMapper {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User mapFrom(RegisterUserCommand userCommand){
+    public User mapFrom(RegisterUser userCommand){
         return User.builder()
                 .id(new UserId(userCommand.getId()))
                 .password(new Password(userCommand.getPassword(), passwordEncoder))

@@ -4,10 +4,10 @@ import com.ljy.flightreservation.user.application.PassportRepository;
 import com.ljy.flightreservation.user.domain.exception.InvalidPassportException;
 import com.ljy.flightreservation.user.domain.value.Passport;
 
-public class ChangePassportValidator {
+public class PassportValidator {
     private final PassportRepository passportRepository;
 
-    public ChangePassportValidator(PassportRepository passportRepository) {
+    public PassportValidator(PassportRepository passportRepository) {
         this.passportRepository = passportRepository;
     }
 

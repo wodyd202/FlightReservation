@@ -3,7 +3,6 @@ package com.ljy.flightreservation.user.domain.agg;
 
 import com.ljy.flightreservation.user.domain.exception.InvalidPasswordException;
 import com.ljy.flightreservation.user.domain.exception.InvalidUserIdException;
-import com.ljy.flightreservation.user.domain.model.ChangePasswordCommand;
 import com.ljy.flightreservation.user.domain.value.Passport;
 import com.ljy.flightreservation.user.domain.value.Password;
 import com.ljy.flightreservation.user.domain.value.UserId;
@@ -29,25 +28,25 @@ public class User {
         this.createDateTime = LocalDateTime.now();
     }
 
-    public void changePassword(ChangePasswordCommand command,
+    public void changePassword(String inputOriginPassword,
+                               Password changePassword,
                                PasswordEncoder passwordEncoder) {
-        verifyEqualsOriginPassword(command.getOriginPassword(), passwordEncoder);
-        this.password = new Password(command.getChangePassword(), passwordEncoder);
+        verifyEqualsOriginPassword(inputOriginPassword, passwordEncoder);
+        this.password = changePassword;
     }
 
-    public void withdrawal(String originPassword,
-                           PasswordEncoder passwordEncoder) {
-        verifyEqualsOriginPassword(originPassword, passwordEncoder);
+    public void withdrawal(String inputOriginPassword, PasswordEncoder passwordEncoder) {
+        verifyEqualsOriginPassword(inputOriginPassword, passwordEncoder);
         this.state = UserState.DELETED;
     }
 
-    private void verifyEqualsOriginPassword(String originPassword, PasswordEncoder passwordEncoder) {
-        if(!password.equalsOriginPassword(originPassword, passwordEncoder)){
+    private void verifyEqualsOriginPassword(String inputOriginPassword, PasswordEncoder passwordEncoder) {
+        if(!passwordEncoder.matches(inputOriginPassword, password.get())){
             throw new InvalidPasswordException("not equals origin password");
         }
     }
 
-    public void changePassport(ChangePassportValidator changePassportValidator,
+    public void changePassport(PassportValidator changePassportValidator,
                                Passport passport) {
         changePassportValidator.validation(passport);
         this.passport = passport;

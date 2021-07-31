@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class RegisterUserValidator {
     private final UserRepository userRepository;
-    private final ChangePassportValidator passportValidator;
+    private final PassportValidator passportValidator;
 
-    public RegisterUserValidator(UserRepository userCommandRepository, ChangePassportValidator passportValidator) {
+    public RegisterUserValidator(UserRepository userCommandRepository, PassportValidator passportValidator) {
         this.userRepository = userCommandRepository;
         this.passportValidator = passportValidator;
     }

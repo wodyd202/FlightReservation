@@ -22,8 +22,4 @@ public class Password {
     public String get() {
         return password;
     }
-
-    public boolean equalsOriginPassword(String originPassword, PasswordEncoder passwordEncoder) {
-        return passwordEncoder.matches(originPassword, password);
-    }
 }
