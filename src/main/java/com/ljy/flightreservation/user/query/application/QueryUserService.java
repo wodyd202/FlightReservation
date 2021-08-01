@@ -1,5 +1,6 @@
 package com.ljy.flightreservation.user.query.application;
 
+import com.ljy.flightreservation.user.command.application.UserRepository;
 import com.ljy.flightreservation.user.query.domain.QueryUser;
 import com.ljy.flightreservation.user.query.domain.exception.UserNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

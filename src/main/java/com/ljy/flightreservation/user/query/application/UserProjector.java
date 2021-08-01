@@ -4,6 +4,7 @@ import com.ljy.flightreservation.user.command.application.event.UserEvent;
 import com.ljy.flightreservation.user.query.domain.QueryUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import java.rmi.AccessException;
 
 @Component
 @Transactional
+@Async
 public class UserProjector {
     @Autowired private QueryUserRepository userRepository;
 
