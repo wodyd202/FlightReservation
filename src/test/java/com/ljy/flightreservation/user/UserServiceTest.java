@@ -11,6 +11,7 @@ import com.ljy.flightreservation.user.command.domain.value.UserId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -26,7 +27,7 @@ public class UserServiceTest {
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     UserMapper userMapper = new UserMapper(passwordEncoder);
 
-    UserService service = new UserService(userRepo, passwordEncoder, userMapper, mock(RegisterUserValidator.class), mock(PassportValidator.class));
+    UserService service = new UserService(mock(ApplicationEventPublisher.class), userRepo, passwordEncoder, userMapper, mock(RegisterUserValidator.class), mock(PassportValidator.class));
 
     @Test
     @DisplayName("register user command >> user 매핑")

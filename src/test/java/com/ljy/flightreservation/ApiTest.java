@@ -18,8 +18,8 @@ public class ApiTest {
 
     protected String obtainJwtToken(String username, String password) throws Exception{
         MockHttpServletResponse response = mvc.perform(post("/oauth/token")
-                .param("username", "test123")
-                .param("password", "password"))
+                .param("username", username)
+                .param("password", password))
                 .andReturn().getResponse();
         return response.getContentAsString();
     }

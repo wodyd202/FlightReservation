@@ -47,8 +47,8 @@ public class JwtTokenProvider {
     public void validation(String token) throws InvalidTokenException {
         try{
             Jws<Claims> headerClaimsJwt = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            boolean before = headerClaimsJwt.getBody().getExpiration().before(new Date());
-            if(before){
+            boolean expire = headerClaimsJwt.getBody().getExpiration().before(new Date());
+            if(expire){
                 throw new InvalidTokenException();
             }
         }catch (Exception e){
