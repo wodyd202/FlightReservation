@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.airplane.command.domain.infra;
+package com.ljy.flightreservation.airplane.domain.infra;
 
 import javax.persistence.AttributeConverter;
 import java.util.Arrays;

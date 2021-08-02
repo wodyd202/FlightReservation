@@ -1,15 +1,16 @@
-package com.ljy.flightreservation.airplane.command.domain.agg;
+package com.ljy.flightreservation.airplane.domain.agg;
 
-import com.ljy.flightreservation.airplane.command.domain.infra.CorridorIndexConverter;
-import com.ljy.flightreservation.airplane.command.domain.value.AirplaneCode;
-import com.ljy.flightreservation.airplane.command.domain.value.AirplaneState;
-import com.ljy.flightreservation.airplane.command.domain.value.Sits;
+import com.ljy.flightreservation.airplane.domain.infra.CorridorIndexConverter;
+import com.ljy.flightreservation.airplane.domain.value.AirplaneCode;
+import com.ljy.flightreservation.airplane.domain.value.AirplaneState;
+import com.ljy.flightreservation.airplane.domain.value.Sits;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -21,9 +22,8 @@ public class Airplane {
     @EmbeddedId
     private AirplaneCode code;
 
-    @Convert(converter = CorridorIndexConverter.class)
-    @Column(nullable = false)
-    private List<Integer> corridorIndexes;
+    @Embedded
+    private CorridorIndexes indexes;
 
     @Embedded
     private Sits sits;
@@ -33,9 +33,9 @@ public class Airplane {
     private AirplaneState state;
 
     @Builder
-    public Airplane(AirplaneCode code, List<Integer> corridorIndexes, Sits sits) {
+    public Airplane(AirplaneCode code, CorridorIndexes corridorIndexes, Sits sits) {
         this.code = code;
-        this.corridorIndexes = corridorIndexes;
+        this.indexes = corridorIndexes;
         this.sits = sits;
         this.state = AirplaneState.FLIGHT;
     }

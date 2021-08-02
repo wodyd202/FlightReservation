@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.airplane.command.domain.value;
+package com.ljy.flightreservation.airplane.domain.value;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
