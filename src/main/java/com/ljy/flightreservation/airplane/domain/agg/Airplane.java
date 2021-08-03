@@ -1,8 +1,8 @@
 package com.ljy.flightreservation.airplane.domain.agg;
 
-import com.ljy.flightreservation.airplane.domain.infra.CorridorIndexConverter;
 import com.ljy.flightreservation.airplane.domain.value.AirplaneCode;
 import com.ljy.flightreservation.airplane.domain.value.AirplaneState;
+import com.ljy.flightreservation.airplane.domain.value.CorridorIndexes;
 import com.ljy.flightreservation.airplane.domain.value.Sits;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
 
 @Entity
 @Table(name = "airplanes")

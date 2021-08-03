@@ -1,6 +1,6 @@
 package com.ljy.flightreservation.airplane.domain.value;
 
-import com.ljy.flightreservation.airplane.InvalidSitException;
+import com.ljy.flightreservation.airplane.domain.exception.InvalidSitException;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;

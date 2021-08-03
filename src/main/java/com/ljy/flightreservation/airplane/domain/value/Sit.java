@@ -1,6 +1,6 @@
 package com.ljy.flightreservation.airplane.domain.value;
 
-import com.ljy.flightreservation.airplane.InvalidSitException;
+import com.ljy.flightreservation.airplane.domain.exception.InvalidSitException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 

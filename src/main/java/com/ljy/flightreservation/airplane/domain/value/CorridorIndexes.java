@@ -1,6 +1,8 @@
-package com.ljy.flightreservation.airplane.domain.agg;
+package com.ljy.flightreservation.airplane.domain.value;
 
 import com.ljy.flightreservation.airplane.domain.infra.CorridorIndexConverter;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -9,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CorridorIndexes {
 
     @Convert(converter = CorridorIndexConverter.class)

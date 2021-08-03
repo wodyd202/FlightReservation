@@ -1,12 +1,10 @@
 package com.ljy.flightreservation.user.command.presentation;
 
+import com.ljy.flightreservation.core.http.CommandException;
 import com.ljy.flightreservation.user.command.domain.exception.*;
-import org.h2.command.Command;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.xml.ws.Response;
 
 @RestControllerAdvice
 public class UserExceptionHandler {

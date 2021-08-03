@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.user.command.presentation;
+package com.ljy.flightreservation.core.http;
 
 import org.springframework.validation.Errors;
 

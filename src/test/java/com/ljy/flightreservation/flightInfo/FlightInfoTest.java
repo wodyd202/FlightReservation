@@ -1,12 +1,10 @@
 package com.ljy.flightreservation.flightInfo;
 
+import com.ljy.flightreservation.flightInfo.application.FlightInfoRepository;
 import com.ljy.flightreservation.flightInfo.domain.agg.FlightInfo;
 import com.ljy.flightreservation.flightInfo.domain.exception.InvalidFightInfoException;
 import com.ljy.flightreservation.flightInfo.domain.exception.InvalildFlightInfoException;
-import com.ljy.flightreservation.flightInfo.domain.value.AirplaneCode;
-import com.ljy.flightreservation.flightInfo.domain.value.BasePrice;
-import com.ljy.flightreservation.flightInfo.domain.value.FlightDepartureArrivalArea;
-import com.ljy.flightreservation.flightInfo.domain.value.FlightTimes;
+import com.ljy.flightreservation.flightInfo.domain.value.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +79,7 @@ public class FlightInfoTest {
                         .departureMinute(10)
                         .build())
                 .price(BasePrice.won(30000))
+                .needPassport(NeedPassport.NO)
                 .airplaneCode(new AirplaneCode("code"))
                 .build();
         repository.save(flightInfomation);

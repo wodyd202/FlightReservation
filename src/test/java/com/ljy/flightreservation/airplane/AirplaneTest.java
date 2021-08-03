@@ -1,7 +1,8 @@
 package com.ljy.flightreservation.airplane;
 
 import com.ljy.flightreservation.airplane.domain.agg.Airplane;
-import com.ljy.flightreservation.airplane.domain.agg.CorridorIndexes;
+import com.ljy.flightreservation.airplane.domain.value.CorridorIndexes;
+import com.ljy.flightreservation.airplane.domain.exception.InvalidSitException;
 import com.ljy.flightreservation.airplane.domain.value.AirplaneCode;
 import com.ljy.flightreservation.airplane.domain.value.Sit;
 import com.ljy.flightreservation.airplane.domain.value.SitType;

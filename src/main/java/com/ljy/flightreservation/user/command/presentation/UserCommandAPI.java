@@ -1,12 +1,11 @@
 package com.ljy.flightreservation.user.command.presentation;
 
+import com.ljy.flightreservation.core.http.CommandException;
 import com.ljy.flightreservation.user.command.application.UserService;
 import com.ljy.flightreservation.user.command.application.model.*;
 import com.ljy.flightreservation.user.command.domain.value.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
