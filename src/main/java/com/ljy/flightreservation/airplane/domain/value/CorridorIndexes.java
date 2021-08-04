@@ -22,4 +22,8 @@ public class CorridorIndexes {
         Collections.sort(corridorIndexes);
         this.corridorIndexes = corridorIndexes;
     }
+
+    public List<Integer> get() {
+        return corridorIndexes;
+    }
 }
