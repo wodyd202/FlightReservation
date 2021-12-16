@@ -1,10 +1,10 @@
 package com.ljy.flightreservation.runner;
 
-import com.ljy.flightreservation.airplane.application.AirplaneRepository;
-import com.ljy.flightreservation.airplane.domain.agg.Airplane;
-import com.ljy.flightreservation.airplane.domain.value.*;
-import com.ljy.flightreservation.flightInfo.application.FlightInfoService;
-import com.ljy.flightreservation.flightInfo.application.model.RegistrationFlightInfo;
+import com.ljy.flightreservation.services.airplane.application.AirplaneRepository;
+import com.ljy.flightreservation.services.airplane.domain.agg.Airplane;
+import com.ljy.flightreservation.services.airplane.domain.value.*;
+import com.ljy.flightreservation.services.flightInfo.application.FlightInfoService;
+import com.ljy.flightreservation.services.flightInfo.application.model.RegistrationFlightInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @Transactional

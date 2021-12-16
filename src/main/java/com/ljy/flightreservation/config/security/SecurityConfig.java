@@ -1,6 +1,5 @@
 package com.ljy.flightreservation.config.security;
 
-import com.sun.javaws.JAuthenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

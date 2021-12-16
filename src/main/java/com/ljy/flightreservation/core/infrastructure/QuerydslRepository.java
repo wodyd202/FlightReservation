@@ -12,11 +12,11 @@ public class QuerydslRepository<T> {
     @PersistenceContext protected EntityManager entityManager;
     @Autowired protected JPAQueryFactory jpaQueryFactory;
 
-    public void save(T obj){
-        if(entityManager.contains(obj)){
-            entityManager.merge(obj);
+    public void save(T member){
+        if(entityManager.contains(member)){
+            entityManager.merge(member);
         }else{
-            entityManager.persist(obj);
+            entityManager.persist(member);
         }
     }
 }
