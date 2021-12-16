@@ -1,15 +1,19 @@
 package com.ljy.flightreservation.services.airplane.domain.value;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AirplaneCode implements Serializable {
-    private final String code;
+    private String code;
 
-    protected AirplaneCode(){code = null;};
+    public static AirplaneCode of(String code){return new AirplaneCode(code);}
 
-    public AirplaneCode(String code){
+    private AirplaneCode(String code){
         this.code = code;
     }
 
