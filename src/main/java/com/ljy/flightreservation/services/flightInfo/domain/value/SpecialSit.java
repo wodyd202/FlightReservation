@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @MappedSuperclass
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 abstract public class SpecialSit {
     // 스페셜 좌석 리스트
     @Convert(converter = SitListConverter.class)

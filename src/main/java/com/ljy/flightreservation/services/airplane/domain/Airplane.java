@@ -34,6 +34,10 @@ public class Airplane {
     public Airplane(AirplaneCode code, SitInfo sitInfo) {
         this.code = code;
         this.sitInfo = sitInfo;
+    }
+
+    public void register(RegisterAirplaneValidator validator){
+        validator.validation(code);
         state = AirplaneState.IN_FLIGHT;
     }
 

@@ -2,18 +2,18 @@ package com.ljy.flightreservation.services.airplane.domain.value;
 
 import com.ljy.flightreservation.services.airplane.domain.model.SpecialSitInfoModel;
 import com.ljy.flightreservation.services.flightInfo.domain.value.SpecialSit;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import java.util.List;
 
 @Getter
 @Embeddable
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SpecialSitInfo extends SpecialSit {
-    public SpecialSitInfo() {
-        super(null, 0);
-    }
 
     @Builder
     public SpecialSitInfo(List<String> sitList, int sitSurcharge) {
