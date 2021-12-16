@@ -18,6 +18,10 @@ public class MemberModel {
     private MemberState state;
     private LocalDateTime createDateTime;
 
+    public boolean isDeleted() {
+        return state.equals(MemberState.DELETED);
+    }
+
     @Builder
     public MemberModel(MemberId id,
                        Password password,

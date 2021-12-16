@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "password")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Password {
     private String password;

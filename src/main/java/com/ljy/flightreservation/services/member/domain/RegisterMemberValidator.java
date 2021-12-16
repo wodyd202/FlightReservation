@@ -29,11 +29,15 @@ public class RegisterMemberValidator {
     private void verifyNotExistMember(MemberId id) {
         Optional<Member> findUser = getMember(id);
         if(findUser.isPresent()){
-            throw new AlreadyExistMemberException("이미 해당 아이디의 회원이 존재합니다.");
+            throw new AlreadyExistMemberException();
         }
     }
 
     private Optional<Member> getMember(MemberId id) {
         return memberRepository.findById(id);
+    }
+
+    public PassportValidator getPassportValidator() {
+        return passportValidator;
     }
 }

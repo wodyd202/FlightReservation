@@ -1,10 +1,7 @@
 package com.ljy.flightreservation.services.member.application;
 
-import com.ljy.flightreservation.services.member.application.model.ChangeMemberInfo;
-import com.ljy.flightreservation.services.member.application.model.RegisterMember;
-import com.ljy.flightreservation.services.member.application.model.ChangeMember;
-import com.ljy.flightreservation.services.member.application.model.ChangePassword;
-import com.ljy.flightreservation.services.member.application.model.WithdrawalMember;
+import com.ljy.flightreservation.services.member.application.exception.NoChangedMemberException;
+import com.ljy.flightreservation.services.member.application.model.*;
 import com.ljy.flightreservation.services.member.domain.exception.AlreadyExistMemberException;
 import com.ljy.flightreservation.services.member.domain.model.MemberModel;
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
@@ -20,7 +17,7 @@ import static com.ljy.flightreservation.services.member.MemberFixture.aMember;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class MemberService_Test extends MemberAPITest{
+public class MemberService_Test extends MemberIntegrationTest {
     @Autowired
     MemberService memberService;
 
@@ -71,12 +68,12 @@ public class MemberService_Test extends MemberAPITest{
 
     @Test
     @DisplayName("비밀번호 변경")
-    void changePassword(){
+    void changePassword() throws NoChangedMemberException {
         // given
         newMember(aMember().id(MemberId.of("changememberid")).password(Password.of("password", passwordEncoder)));
 
         // when
-        MemberModel memberModel = memberService.changePassword(ChangeMember.builder()
+        MemberModel memberModel = memberService.changeMember(ChangeMember.builder()
                         .changePassword(ChangePassword.builder()
                                 .changePassword("changepassword")
                                 .originPassword("password")
@@ -85,6 +82,36 @@ public class MemberService_Test extends MemberAPITest{
 
         // then
         assertTrue(passwordEncoder.matches("changepassword", memberModel.getPassword()));
+    }
+
+    @Test
+    @DisplayName("여권번호 변경")
+    void changePassport() throws NoChangedMemberException {
+        // given
+        newMember(aMember().id(MemberId.of("changememberid")).password(Password.of("password", passwordEncoder)));
+
+        // when
+        MemberModel memberModel = memberService.changeMember(ChangeMember.builder()
+                    .passport("b10382738")
+                .build(), MemberId.of("changememberid"));
+
+        // then
+        assertEquals(memberModel.getMemberInfo().getPassport(), "b10382738");
+    }
+
+    @Test
+    @DisplayName("이메일 변경")
+    void changeEmail() throws NoChangedMemberException {
+        // given
+        newMember(aMember().id(MemberId.of("changememberid")).password(Password.of("password", passwordEncoder)));
+
+        // when
+        MemberModel memberModel = memberService.changeMember(ChangeMember.builder()
+                .email("changeemail@google.com")
+                .build(), MemberId.of("changememberid"));
+
+        // then
+        assertEquals(memberModel.getMemberInfo().getEmail(), "changeemail@google.com");
     }
 
     @Test
@@ -98,6 +125,19 @@ public class MemberService_Test extends MemberAPITest{
 
         // then
         assertEquals(memberModel.getState(), MemberState.DELETED);
+    }
+
+    @Test
+    @DisplayName("입금")
+    void deposit(){
+        // given
+        newMember(aMember().id(MemberId.of("depositmember")));
+
+        // when
+        MemberModel memberModel = memberService.deposit(DepositMoney.builder().money(3000).build(), MemberId.of("depositmember"));
+
+        // then
+        assertEquals(memberModel.getMoney(), 3000);
     }
 
 }

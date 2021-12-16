@@ -6,17 +6,17 @@ import lombok.EqualsAndHashCode;
 public class Money {
     private final long won;
 
-    public Money plus(long won) {
-        return Money.won(this.won + won);
+    public Money plus(Money won) {
+        return Money.won(this.won + won.get());
     }
 
-    public Money minus(long won) {
+    public Money minus(Money won) {
         verifySufficientMoney(won);
-        return Money.won(this.won - won);
+        return Money.won(this.won - won.get());
     }
 
-    private void verifySufficientMoney(long won) {
-        if(this.won < won){
+    private void verifySufficientMoney(Money won) {
+        if(this.won < won.get()){
             throw new IllegalArgumentException("금액이 부족합니다.");
         }
     }

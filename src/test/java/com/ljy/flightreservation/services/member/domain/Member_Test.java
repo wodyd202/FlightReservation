@@ -281,7 +281,7 @@ public class Member_Test {
         Member member = aMember().build();
 
         // when
-        member.deposit(30000L);
+        member.deposit(Money.won(30000L));
         MemberModel memberModel = member.toModel();
 
         // then
@@ -293,10 +293,10 @@ public class Member_Test {
     void pay(){
         // given
         Member member = aMember().build();
-        member.deposit(30000L);
+        member.deposit(Money.won(30000L));
 
         // when
-        member.pay(3000L);
+        member.pay(Money.won(3000L));
         MemberModel memberModel = member.toModel();
 
         // then

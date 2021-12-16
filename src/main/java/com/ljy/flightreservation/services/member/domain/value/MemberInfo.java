@@ -17,6 +17,10 @@ public class MemberInfo {
         this.passport = passport;
     }
 
+    public void changeEmail(Email email) {
+        this.email = email;
+    }
+
     @Builder
     public MemberInfo(Email email, Passport passport) {
         this.email = email;

@@ -1,6 +1,7 @@
 package com.ljy.flightreservation.services.member.application.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepositMoney {

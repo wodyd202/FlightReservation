@@ -22,4 +22,9 @@ public class StubMemberRepository implements MemberRepository {
         Member member = repo.get(id.get());
         return Optional.ofNullable(member);
     }
+
+    @Override
+    public Optional<MemberModel> findById(String memberId) {
+        return null;
+    }
 }

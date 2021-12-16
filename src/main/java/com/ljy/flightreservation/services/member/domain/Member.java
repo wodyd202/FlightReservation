@@ -82,11 +82,15 @@ public class Member {
      * @param passwordEncoder
      * # 비밀번호 변경
      */
-    public void changePassword(String inputOriginPassword,
+    public boolean changePassword(String inputOriginPassword,
                                Password changePassword,
                                PasswordEncoder passwordEncoder) {
         verifyEqualsOriginPassword(inputOriginPassword, passwordEncoder);
+        if(passwordEncoder.matches(inputOriginPassword, changePassword.get())){
+            return false;
+        }
         this.password = changePassword;
+        return true;
     }
 
     /**
@@ -110,17 +114,33 @@ public class Member {
      * @param passport
      * # 여권번호 변경
      */
-    public void changePassport(PassportValidator changePassportValidator,
+    public boolean changePassport(PassportValidator changePassportValidator,
                                Passport passport) {
         changePassportValidator.validation(passport);
+        if(memberInfo.getPassport() != null && memberInfo.getPassport().equals(passport)){
+            return false;
+        }
         this.memberInfo.changePassport(passport);
+        return true;
+    }
+
+    /**
+     * @param email
+     * # 이메일 변경
+     */
+    public boolean changeEmail(Email email) {
+        if(memberInfo.getEmail().equals(email)){
+            return false;
+        }
+        this.memberInfo.changeEmail(email);
+        return true;
     }
 
     /**
      * @param won
      * # 입금
      */
-    public void deposit(long won) {
+    public void deposit(Money won) {
         this.money = this.money.plus(won);
     }
 
@@ -128,7 +148,7 @@ public class Member {
      * @param won
      * # 결제
      */
-    public void pay(long won) {
+    public void pay(Money won) {
         this.money = this.money.minus(won);
     }
 
