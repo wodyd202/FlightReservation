@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.services.member;
+package com.ljy.flightreservation.services.member.application.model;
 
 import lombok.*;
 

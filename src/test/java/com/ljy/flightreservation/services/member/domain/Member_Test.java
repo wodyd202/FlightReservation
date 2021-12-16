@@ -1,14 +1,9 @@
 package com.ljy.flightreservation.services.member.domain;
 
-import com.ljy.flightreservation.services.member.ChangeMemberInfo;
-import com.ljy.flightreservation.services.member.MemberMapper;
-import com.ljy.flightreservation.services.member.RegisterMember;
+import com.ljy.flightreservation.services.member.application.model.ChangeMemberInfo;
+import com.ljy.flightreservation.services.member.application.MemberMapper;
+import com.ljy.flightreservation.services.member.application.model.RegisterMember;
 import com.ljy.flightreservation.services.member.StubMemberRepository;
-import com.ljy.flightreservation.services.member.domain.PassportRepository;
-import com.ljy.flightreservation.services.member.domain.MemberRepository;
-import com.ljy.flightreservation.services.member.domain.PassportValidator;
-import com.ljy.flightreservation.services.member.domain.RegisterMemberValidator;
-import com.ljy.flightreservation.services.member.domain.Member;
 import com.ljy.flightreservation.services.member.domain.exception.*;
 import com.ljy.flightreservation.services.member.domain.model.MemberModel;
 import com.ljy.flightreservation.services.member.domain.value.*;
@@ -23,7 +18,6 @@ import static com.ljy.flightreservation.services.member.MemberFixture.aMember;
 import static com.ljy.flightreservation.services.member.MemberFixture.passwordEncoder;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.springframework.security.crypto.factory.PasswordEncoderFactories.createDelegatingPasswordEncoder;
 
 /**

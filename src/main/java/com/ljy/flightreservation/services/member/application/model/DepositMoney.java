@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepositMoney {
-
-    @NotNull(message = "money must not be empty")
-    @Min(value = 1, message = "invalid money")
-    private Long money;
+    @Min(value = 1000, message = "입금은 1000이상 부터 가능합니다.")
+    private long money;
 }

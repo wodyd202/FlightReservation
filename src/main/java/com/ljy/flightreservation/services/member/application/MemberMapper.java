@@ -1,12 +1,11 @@
-package com.ljy.flightreservation.services.member;
+package com.ljy.flightreservation.services.member.application;
 
+import com.ljy.flightreservation.services.member.application.model.RegisterMember;
 import com.ljy.flightreservation.services.member.domain.Member;
 import com.ljy.flightreservation.services.member.domain.value.*;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 @Component
 public class MemberMapper {

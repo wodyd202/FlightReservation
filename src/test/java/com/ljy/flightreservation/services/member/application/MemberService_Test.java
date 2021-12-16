@@ -1,7 +1,8 @@
 package com.ljy.flightreservation.services.member.application;
 
-import com.ljy.flightreservation.services.member.ChangeMemberInfo;
-import com.ljy.flightreservation.services.member.RegisterMember;
+import com.ljy.flightreservation.services.member.application.model.ChangeMemberInfo;
+import com.ljy.flightreservation.services.member.application.model.RegisterMember;
+import com.ljy.flightreservation.services.member.application.model.ChangeMember;
 import com.ljy.flightreservation.services.member.application.model.ChangePassword;
 import com.ljy.flightreservation.services.member.application.model.WithdrawalMember;
 import com.ljy.flightreservation.services.member.domain.exception.AlreadyExistMemberException;

@@ -1,6 +1,5 @@
-package com.ljy.flightreservation.services.member.application;
+package com.ljy.flightreservation.services.member.application.model;
 
-import com.ljy.flightreservation.services.member.application.model.ChangePassword;
 import lombok.*;
 
 @Builder
