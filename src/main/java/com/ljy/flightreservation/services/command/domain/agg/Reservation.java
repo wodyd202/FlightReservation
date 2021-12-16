@@ -27,13 +27,13 @@ public class Reservation {
     private SitCodes sitCodes;
     private LocalDate reservationDate;
 
-    public void request(ReservationCode code, ReservationRequestValidator reservationRequestValidator) {
-        long totalPrice = reservationRequestValidator.validationAfterReturnTotalPrice(booker, flightInfoCode, sitCodes, reservationDate);
-        this.code = code;
-        this.createDateTime = LocalDateTime.now();
-        this.state = ReservationState.SUCCESS;
-        this.totalPrice = Price.won(totalPrice);
-    }
+//    public void request(ReservationCode code, ReservationRequestValidator reservationRequestValidator) {
+//        long totalPrice = reservationRequestValidator.validationAfterReturnTotalPrice(booker, flightInfoCode, sitCodes, reservationDate);
+//        this.code = code;
+//        this.createDateTime = LocalDateTime.now();
+//        this.state = ReservationState.SUCCESS;
+//        this.totalPrice = Price.won(totalPrice);
+//    }
 
     @Builder
     public Reservation(Booker booker,

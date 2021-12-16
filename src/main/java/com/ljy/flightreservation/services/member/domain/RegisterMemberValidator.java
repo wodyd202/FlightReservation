@@ -19,7 +19,11 @@ public class RegisterMemberValidator {
 
     public void validation(MemberId id, MemberInfo memberInfo) {
         verifyNotExistMember(id);
-        passportValidator.validation(memberInfo.getPassport());
+
+        // 사용자가 여권 번호를 입력했을 경우에만 validation
+        if(!memberInfo.getPassport().isEmpty()){
+            passportValidator.validation(memberInfo.getPassport());
+        }
     }
 
     private void verifyNotExistMember(MemberId id) {

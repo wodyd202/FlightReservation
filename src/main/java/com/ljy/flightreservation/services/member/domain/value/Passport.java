@@ -37,4 +37,8 @@ public class Passport {
     public String get() {
         return passport;
     }
+
+    public boolean isEmpty() {
+        return passport == null;
+    }
 }

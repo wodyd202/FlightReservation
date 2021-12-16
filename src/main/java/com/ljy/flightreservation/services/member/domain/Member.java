@@ -68,7 +68,7 @@ public class Member {
 
     /**
      * @param registerUserValidator
-     * # ©회원 등록
+     * # 회원 등록
      */
     public void register(RegisterMemberValidator registerUserValidator) {
         registerUserValidator.validation(id, memberInfo);
@@ -101,7 +101,7 @@ public class Member {
 
     private void verifyEqualsOriginPassword(String inputOriginPassword, PasswordEncoder passwordEncoder) {
         if (!passwordEncoder.matches(inputOriginPassword, password.get())) {
-            throw new IllegalArgumentException("not equals origin password");
+            throw new IllegalArgumentException("기존 비밀번호가 일치하지 않습니다.");
         }
     }
 

@@ -154,7 +154,8 @@ public class Member_Test {
                             .passport("")
                             .build())
                     .build();
-        MemberMapper memberMapper = new MemberMapper(passwordEncoder);
+        MemberMapper memberMapper = new MemberMapper();
+        memberMapper.setPasswordEncoder(passwordEncoder);
 
         // when
         Member member = memberMapper.mapFrom(registerMember);

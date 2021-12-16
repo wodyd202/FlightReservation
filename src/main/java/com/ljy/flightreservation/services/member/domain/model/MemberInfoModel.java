@@ -16,6 +16,6 @@ public class MemberInfoModel {
     @Builder
     public MemberInfoModel(Email email, Passport passport) {
         this.email = email.get();
-        this.passport = passport.get();
+        this.passport = passport == null ? null : passport.get();
     }
 }

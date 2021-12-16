@@ -13,11 +13,11 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangePassword {
-    @NotBlank(message = "originPassword must not be empty")
-    @Size(min = 5, max = 15, message = "originPassword size must be 5 or more and 15 or less")
+    @NotBlank(message = "기존 비밀번호를 입력해주세요.")
+    @Size(min = 5, max = 15, message = "기존 비밀번호는 5자 이상 15자 이하로 입력해주세요.")
     private String originPassword;
 
-    @NotBlank(message = "changePassword must not be empty")
-    @Size(min = 5, max = 15, message = "changePassword size must be 5 or more and 15 or less")
+    @NotBlank(message = "변경할 비밀번호를 입력해주세요.")
+    @Size(min = 5, max = 15, message = "변경할 비밀번호는 5자 이상 15자 이하로 입력해주세요.")
     private String changePassword;
 }

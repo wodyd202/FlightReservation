@@ -6,7 +6,7 @@ import com.ljy.flightreservation.services.member.domain.exception.UserNotFoundEx
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
 
 public class MemberServiceHelper {
-    public static Member findByUserId(MemberRepository userRepo, MemberId userId) {
-        return userRepo.findById(userId).orElseThrow(() -> new UserNotFoundException("user not found"));
+    public static Member getMember(MemberRepository memberRepository, MemberId userId) {
+        return memberRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 }
