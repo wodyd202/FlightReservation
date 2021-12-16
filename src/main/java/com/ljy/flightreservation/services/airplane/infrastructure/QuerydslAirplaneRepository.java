@@ -2,7 +2,9 @@ package com.ljy.flightreservation.services.airplane.infrastructure;
 
 import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
 import com.ljy.flightreservation.services.airplane.domain.Airplane;
+import com.ljy.flightreservation.services.airplane.domain.model.AirplaneModel;
 import com.ljy.flightreservation.services.airplane.domain.value.AirplaneCode;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,20 @@ public class QuerydslAirplaneRepository implements AirplaneRepository {
     public Optional<Airplane> findById(AirplaneCode code) {
         return Optional.ofNullable(jpaQueryFactory.selectFrom(airplane)
                 .where(airplane.code().eq(code))
+                .fetchFirst());
+    }
+
+    // query
+
+    @Override
+    public Optional<AirplaneModel> findById(String airplaneCode) {
+        return Optional.ofNullable(jpaQueryFactory.select(Projections.constructor(AirplaneModel.class,
+                        airplane.code(),
+                        airplane.sitInfo(),
+                        airplane.state
+                    ))
+                .from(airplane)
+                .where(airplane.code().code.eq(airplaneCode))
                 .fetchFirst());
     }
 }

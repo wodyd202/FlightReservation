@@ -4,9 +4,8 @@ import com.ljy.flightreservation.services.airplane.application.model.RegisterAir
 import com.ljy.flightreservation.services.airplane.domain.Airplane;
 import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
 import com.ljy.flightreservation.services.airplane.domain.RegisterAirplaneValidator;
-import com.ljy.flightreservation.services.airplane.domain.exception.AlreadyExistAirplaneException;
+import com.ljy.flightreservation.services.airplane.domain.exception.AirplaneNotFoundException;
 import com.ljy.flightreservation.services.airplane.domain.model.AirplaneModel;
-import com.ljy.flightreservation.services.airplane.domain.value.AirplaneCode;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,5 +38,9 @@ public class AirplaneService {
         AirplaneModel airplaneModel = airplane.toModel();
         log.info("save airplane into database : {}", airplaneModel);
         return airplaneModel;
+    }
+
+    public AirplaneModel getAirplaneModel(String airplaneCode) {
+        return airplaneRepository.findById(airplaneCode).orElseThrow(AirplaneNotFoundException::new);
     }
 }

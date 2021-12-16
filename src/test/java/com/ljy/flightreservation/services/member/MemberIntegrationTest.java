@@ -1,12 +1,10 @@
-package com.ljy.flightreservation.services.member.application;
+package com.ljy.flightreservation.services.member;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ljy.flightreservation.IntegrationTest;
 import com.ljy.flightreservation.services.member.domain.Member;
 import com.ljy.flightreservation.services.member.domain.MemberRepository;
 import com.ljy.flightreservation.services.member.domain.RegisterMemberValidator;
-import com.ljy.flightreservation.services.member.domain.exception.UserNotFoundException;
+import com.ljy.flightreservation.services.member.domain.exception.MemberNotFoundException;
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +19,7 @@ public class MemberIntegrationTest extends IntegrationTest {
         member.register(mock(RegisterMemberValidator.class));
         try{
             getMember(memberRepository, MemberId.of(member.toModel().getId()));
-        }catch (UserNotFoundException e){
+        }catch (MemberNotFoundException e){
             memberRepository.save(member);
         }
     }

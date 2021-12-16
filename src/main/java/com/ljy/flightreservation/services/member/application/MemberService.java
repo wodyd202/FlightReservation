@@ -5,7 +5,7 @@ import com.ljy.flightreservation.services.member.application.model.*;
 import com.ljy.flightreservation.services.member.domain.Member;
 import com.ljy.flightreservation.services.member.domain.MemberRepository;
 import com.ljy.flightreservation.services.member.domain.RegisterMemberValidator;
-import com.ljy.flightreservation.services.member.domain.exception.UserNotFoundException;
+import com.ljy.flightreservation.services.member.domain.exception.MemberNotFoundException;
 import com.ljy.flightreservation.services.member.domain.model.MemberModel;
 import com.ljy.flightreservation.services.member.domain.value.*;
 import lombok.AllArgsConstructor;
@@ -119,9 +119,9 @@ public class MemberService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-        MemberModel member = memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
+        MemberModel member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
         if(member.isDeleted()){
-            throw new UserNotFoundException();
+            throw new MemberNotFoundException();
         }
         return new User(member.getId(), member.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_MEMBER")));
     }
@@ -131,6 +131,6 @@ public class MemberService implements UserDetailsService {
      * # 회원 조회
      */
     public MemberModel getMember(String memberId) {
-        return memberRepository.findById(memberId).orElseThrow(UserNotFoundException::new);
+        return memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
     }
 }

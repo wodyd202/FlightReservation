@@ -1,6 +1,6 @@
 package com.ljy.flightreservation.services.member.presentation;
 
-import com.ljy.flightreservation.services.member.application.MemberIntegrationTest;
+import com.ljy.flightreservation.services.member.MemberIntegrationTest;
 import com.ljy.flightreservation.services.member.application.model.*;
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
 import com.ljy.flightreservation.services.member.domain.value.Password;
@@ -8,9 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.restdocs.headers.HeaderDocumentation;
 
 import static com.ljy.flightreservation.services.member.MemberFixture.*;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.JsonFieldType.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
@@ -174,6 +176,9 @@ public class MemberAPI_Test extends MemberIntegrationTest {
         // then
         .andExpect(status().isOk())
         .andDo(document("change_member_email",
+        requestHeaders(
+            headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
+        ),
         requestFields(
                 fieldWithPath("email").type(STRING).description("회원 이메일"),
                 fieldWithPath("changePassword").ignored(),
@@ -216,6 +221,9 @@ public class MemberAPI_Test extends MemberIntegrationTest {
         // then
         .andExpect(status().isOk())
         .andDo(document("change_member_passport",
+        requestHeaders(
+                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
+        ),
         requestFields(
                 fieldWithPath("passport").type(STRING).description("여권 번호"),
                 fieldWithPath("changePassword").ignored(),
@@ -279,6 +287,9 @@ public class MemberAPI_Test extends MemberIntegrationTest {
         // then
         .andExpect(status().isOk())
         .andDo(document("change_member_password",
+        requestHeaders(
+                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
+        ),
         requestFields(
                 fieldWithPath("changePassword").type(OBJECT).description("비밀번호 변경시 사용되는 JSON"),
                 fieldWithPath("changePassword.originPassword").type(STRING).description("기존 비밀번호"),
@@ -355,6 +366,9 @@ public class MemberAPI_Test extends MemberIntegrationTest {
         // then
         .andExpect(status().isOk())
         .andDo(document("withdrawal_member",
+        requestHeaders(
+                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
+        ),
         requestFields(
                 fieldWithPath("originPassword").type(STRING).description("기존 비밀번호")
         )));
@@ -370,6 +384,9 @@ public class MemberAPI_Test extends MemberIntegrationTest {
         // then
         .andExpect(status().isOk())
         .andDo(document("get_member",
+        requestHeaders(
+                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
+        ),
         responseFields(
                 fieldWithPath("id").type(STRING).description("회원 아이디"),
                 fieldWithPath("memberInfo").type(OBJECT).description("회원 정보"),

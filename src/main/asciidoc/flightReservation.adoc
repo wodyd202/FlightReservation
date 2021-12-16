@@ -47,3 +47,13 @@ include::{snippets}/withdrawal_member/response-body.adoc[]
 include::{snippets}/get_member/http-request.adoc[]
 include::{snippets}/get_member/response-body.adoc[]
 include::{snippets}/get_member/response-fields.adoc[]
+
+
+[[api]]
+== Airplane API
+항공기 관련 API
+
+=== 항공기 조회
+include::{snippets}/get_airplane/http-request.adoc[]
+include::{snippets}/get_airplane/response-body.adoc[]
+include::{snippets}/get_airplane/response-fields.adoc[]

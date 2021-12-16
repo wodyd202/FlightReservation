@@ -19,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 @SpringBootTest
 public class AirplaneService_Test extends AirplaneIntegrationTest {
-    @Autowired
-    AirplaneService airplaneService;
+    @Autowired AirplaneService airplaneService;
 
     @Test
     @DisplayName("항공기 등록")

@@ -1,5 +1,6 @@
 package com.ljy.flightreservation.services.airplane.application;
 
+import com.ljy.flightreservation.IntegrationTest;
 import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
 import com.ljy.flightreservation.services.airplane.domain.Airplane;
 import com.ljy.flightreservation.services.airplane.domain.RegisterAirplaneValidator;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.mockito.Mockito.mock;
 
-public class AirplaneIntegrationTest {
+public class AirplaneIntegrationTest extends IntegrationTest {
     @Autowired
     AirplaneRepository airplaneRepository;
 

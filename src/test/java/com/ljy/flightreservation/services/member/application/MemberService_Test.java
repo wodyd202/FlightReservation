@@ -1,5 +1,6 @@
 package com.ljy.flightreservation.services.member.application;
 
+import com.ljy.flightreservation.services.member.MemberIntegrationTest;
 import com.ljy.flightreservation.services.member.application.exception.NoChangedMemberException;
 import com.ljy.flightreservation.services.member.application.model.*;
 import com.ljy.flightreservation.services.member.domain.exception.AlreadyExistMemberException;
