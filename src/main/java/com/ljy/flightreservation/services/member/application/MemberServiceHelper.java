@@ -4,7 +4,6 @@ import com.ljy.flightreservation.services.member.domain.MemberRepository;
 import com.ljy.flightreservation.services.member.domain.Member;
 import com.ljy.flightreservation.services.member.domain.exception.UserNotFoundException;
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class MemberServiceHelper {
     public static Member getMember(MemberRepository memberRepository, MemberId userId) {

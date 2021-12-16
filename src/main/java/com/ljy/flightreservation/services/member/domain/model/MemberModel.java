@@ -1,5 +1,6 @@
 package com.ljy.flightreservation.services.member.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ljy.flightreservation.services.member.domain.value.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,12 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberModel {
     private String id;
+
+    @JsonIgnore
     private String password;
     private MemberInfoModel memberInfo;
     private long money;
     private MemberState state;
     private LocalDateTime createDateTime;
 
+    @JsonIgnore
     public boolean isDeleted() {
         return state.equals(MemberState.DELETED);
     }

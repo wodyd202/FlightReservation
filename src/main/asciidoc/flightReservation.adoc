@@ -1,0 +1,49 @@
+= FlightReservation API Docs
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectlinks:
+:sectanchors:
+
+[[api]]
+== Member API
+회원 관련 API
+
+=== 회원 생성
+include::{snippets}/register_member/http-request.adoc[]
+include::{snippets}/register_member/request-body.adoc[]
+include::{snippets}/register_member/request-fields.adoc[]
+include::{snippets}/register_member/response-body.adoc[]
+
+=== 회원 수정
+==== 이메일 수정
+include::{snippets}/change_member_email/http-request.adoc[]
+include::{snippets}/change_member_email/request-body.adoc[]
+include::{snippets}/change_member_email/request-fields.adoc[]
+include::{snippets}/change_member_email/response-body.adoc[]
+
+==== 여권번호 수정
+include::{snippets}/change_member_passport/http-request.adoc[]
+include::{snippets}/change_member_passport/request-body.adoc[]
+include::{snippets}/change_member_passport/request-fields.adoc[]
+include::{snippets}/change_member_passport/response-body.adoc[]
+
+==== 비밀번호 수정
+include::{snippets}/change_member_password/http-request.adoc[]
+include::{snippets}/change_member_password/request-body.adoc[]
+include::{snippets}/change_member_password/request-fields.adoc[]
+include::{snippets}/change_member_password/response-body.adoc[]
+
+=== 회원 탈퇴
+include::{snippets}/withdrawal_member/http-request.adoc[]
+include::{snippets}/withdrawal_member/request-body.adoc[]
+include::{snippets}/withdrawal_member/request-fields.adoc[]
+include::{snippets}/withdrawal_member/response-body.adoc[]
+
+=== 회원 정보 조회
+include::{snippets}/get_member/http-request.adoc[]
+include::{snippets}/get_member/response-body.adoc[]
+include::{snippets}/get_member/response-fields.adoc[]
