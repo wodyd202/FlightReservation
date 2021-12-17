@@ -13,13 +13,14 @@ import javax.persistence.*;
  * 운항 정보
  */
 @Entity
+@Table(indexes = {@Index(columnList = "departureDate, arrivalDate, arrivalArea")})
 @DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Flight {
 
     // 운항 정보 고유값
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;
 
     // 기본 가격

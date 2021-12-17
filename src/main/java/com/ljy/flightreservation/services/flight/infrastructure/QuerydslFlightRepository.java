@@ -4,7 +4,6 @@ import com.ljy.flightreservation.services.flight.application.model.FlightSearchD
 import com.ljy.flightreservation.services.flight.domain.Flight;
 import com.ljy.flightreservation.services.flight.domain.FlightRepository;
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
