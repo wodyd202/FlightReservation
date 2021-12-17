@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.services.flight.domain.infra;
+package com.ljy.flightreservation.services.airplane.domain.value.infra;
 
 import org.springframework.stereotype.Component;
 

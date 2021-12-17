@@ -55,5 +55,52 @@ include::{snippets}/get_member/response-fields.adoc[]
 
 === 항공기 조회
 include::{snippets}/get_airplane/http-request.adoc[]
-include::{snippets}/get_airplane/response-body.adoc[]
+include::{snippets}/get_airplane/path-parameters.adoc[]
+include::{snippets}/get_airplane/http-response.adoc[]
 include::{snippets}/get_airplane/response-fields.adoc[]
+
+[[api]]
+== Flight API
+운항 정보 관련 API
+
+=== 운항 정보 상세 조회
+include::{snippets}/get_flight/http-request.adoc[]
+include::{snippets}/get_flight/path-parameters.adoc[]
+include::{snippets}/get_flight/http-response.adoc[]
+include::{snippets}/get_flight/response-fields.adoc[]
+
+=== 운항 정보 리스트 조회
+include::{snippets}/get_flight_list/http-request.adoc[]
+include::{snippets}/get_flight_list/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]
+
+==== 운항 정보 리스트 조회(특정 지역 도착)
+include::{snippets}/get_flight_list_by_area/http-request.adoc[]
+include::{snippets}/get_flight_list_by_area/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]
+
+==== 운항 정보 리스트 조회(특정 일자에 도착)
+include::{snippets}/get_flight_list_by_arrival_date/http-request.adoc[]
+include::{snippets}/get_flight_list_by_arrival_date/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]
+
+==== 운항 정보 리스트 조회(특정 일자에 출발해서 특정 일자에 도착)
+include::{snippets}/get_flight_list_by_depareture_date_and_arrival_date/http-request.adoc[]
+include::{snippets}/get_flight_list_by_depareture_date_and_arrival_date/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]
+
+==== 운항 정보 리스트 조회(특정 일자에 출발)
+include::{snippets}/get_flight_list_by_departure_date/http-request.adoc[]
+include::{snippets}/get_flight_list_by_departure_date/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]
+
+==== 운항 정보 리스트 조회(지난 운항 정보 조회)
+include::{snippets}/get_flight_list_by_past/http-request.adoc[]
+include::{snippets}/get_flight_list_by_past/request-parameters.adoc[]
+include::{snippets}/get_flight_list/http-response.adoc[]
+include::{snippets}/get_flight_list/response-fields.adoc[]

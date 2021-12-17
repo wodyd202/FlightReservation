@@ -11,7 +11,6 @@ import com.ljy.flightreservation.services.flight.application.model.RegisterFligh
 import com.ljy.flightreservation.services.flight.domain.FlightState;
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

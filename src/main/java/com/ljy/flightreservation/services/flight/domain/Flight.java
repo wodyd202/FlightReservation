@@ -50,8 +50,8 @@ public class Flight {
     public FlightModel toModel() {
         return FlightModel.builder()
                 .seq(seq)
-                .flightDetail(flightDetail.toModel())
-                .airplaneInfo(airplaneInfo.toModel())
+                .flightDetail(flightDetail)
+                .airplaneInfo(airplaneInfo)
                 .needPassport(needPassport)
                 .state(state)
                 .build();
