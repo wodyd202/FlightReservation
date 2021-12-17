@@ -4,7 +4,7 @@
 
 
 #### Tech
-- Spring Boot(2.4.6)
+- Spring Boot2
 - Junit5
 - JPA, Querydsl
 - DDD, TDD
