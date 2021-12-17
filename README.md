@@ -7,7 +7,7 @@
 - Spring Boot(2.4.6)
 - Junit5
 - JPA, Querydsl
-- DDD(cqrs), TDD
+- DDD, TDD
 - jacoco
 
 <a href="https://coveralls.io/github/wodyd202/oschajsa"><img src="https://coveralls.io/repos/github/wodyd202/FlightReservation/badge.svg" alt="Coverage Status" /></a>
