@@ -1,5 +1,6 @@
 package com.ljy.flightreservation.services.reservation.domain;
 
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.reservation.domain.model.ReservationModel;
 import com.ljy.flightreservation.services.reservation.domain.value.Booker;
 import com.ljy.flightreservation.services.reservation.domain.value.FlightInfo;
@@ -25,6 +26,7 @@ public class Reservation_Test {
         Reservation reservation = Reservation.builder()
                 .flightInfo(FlightInfo.builder()
                         .seq(1)
+                        .basePrice(BasePrice.won(300000))
                         .departureDate(LocalDate.now())
                         .arrivalDate(LocalDate.now())
                         .departureTime(1)
