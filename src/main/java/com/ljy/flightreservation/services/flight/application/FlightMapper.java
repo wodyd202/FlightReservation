@@ -5,6 +5,7 @@ import com.ljy.flightreservation.services.flight.domain.AirplaneInfo;
 import com.ljy.flightreservation.services.flight.domain.Flight;
 import com.ljy.flightreservation.services.flight.domain.FlightDetail;
 import com.ljy.flightreservation.services.flight.domain.FlightState;
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ public class FlightMapper {
 
     public Flight mapFrom(RegisterFlight registerFlight) {
         return Flight.builder()
+                .basePrice(BasePrice.won(registerFlight.getBasePrice()))
                 .airplaneInfo(AirplaneInfo.builder()
                         .code(registerFlight.getAirplaneCode())
                         .build())

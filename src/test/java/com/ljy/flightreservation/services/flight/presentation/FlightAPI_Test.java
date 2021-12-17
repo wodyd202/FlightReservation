@@ -43,6 +43,7 @@ public class FlightAPI_Test extends FlightIntegrationTest {
         ),
         responseFields(
                 fieldWithPath("seq").type(NUMBER).description("운항 정보 고유 번호"),
+                fieldWithPath("basePrice").type(NUMBER).description("기본 금액"),
                 fieldWithPath("airplaneInfo").type(OBJECT).description("항공기 정보"),
                 fieldWithPath("airplaneInfo.code").type(STRING).description("항공기 코드"),
                 fieldWithPath("flightDetail").type(OBJECT).description("운항 상세 정보"),
@@ -159,6 +160,7 @@ public class FlightAPI_Test extends FlightIntegrationTest {
                 fieldWithPath("flights").type(ARRAY).description("운항 정보"),
                 fieldWithPath("totalElement").type(NUMBER).description("운항 정보 총 개수"),
                 fieldWithPath("flights[].seq").type(NUMBER).description("운항 정보 고유 번호"),
+                fieldWithPath("flights[].basePrice").type(NUMBER).description("기본 금액"),
                 fieldWithPath("flights[].airplaneInfo").ignored(),
                 fieldWithPath("flights[].flightDetail").type(OBJECT).description("운항 상세 정보"),
                 fieldWithPath("flights[].flightDetail.departureDate").type(STRING).description("출발 일자"),

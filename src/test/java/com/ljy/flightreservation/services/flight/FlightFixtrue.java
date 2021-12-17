@@ -3,6 +3,7 @@ package com.ljy.flightreservation.services.flight;
 import com.ljy.flightreservation.services.flight.domain.AirplaneInfo;
 import com.ljy.flightreservation.services.flight.domain.Flight;
 import com.ljy.flightreservation.services.flight.domain.FlightDetail;
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 public class FlightFixtrue {
     public static Flight.FlightBuilder aFlight(){
         return Flight.builder()
+                .basePrice(BasePrice.won(500000))
                 .airplaneInfo(AirplaneInfo.builder()
                         .code("airplaneCode")
                         .build())

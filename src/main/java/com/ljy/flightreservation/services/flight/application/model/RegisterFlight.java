@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RegisterFlight {
+    private long basePrice;
     private String airplaneCode;
     private ChangeFlightDetail flightDetail;
     private NeedPassport needPassport;

@@ -37,6 +37,7 @@ public class QuerydslFlightRepository implements FlightRepository {
         return Optional.ofNullable(
             jpaQueryFactory.select(Projections.constructor(FlightModel.class,
                             flight.seq,
+                            flight.basePrice,
                             flight.airplaneInfo(),
                             flight.flightDetail(),
                             flight.needPassport,
@@ -48,8 +49,10 @@ public class QuerydslFlightRepository implements FlightRepository {
 
     @Override
     public List<FlightModel> findAll(FlightSearchDTO flightSearchDTO) {
+        int LIMIT = 20;
         return jpaQueryFactory.select(Projections.constructor(FlightModel.class,
                         flight.seq,
+                        flight.basePrice,
                         flight.flightDetail(),
                         flight.needPassport,
                         flight.state))
@@ -58,8 +61,8 @@ public class QuerydslFlightRepository implements FlightRepository {
                         eqArrivalArea(flightSearchDTO.getPast(), flightSearchDTO.getArrivalArea()),
                         eqArrivalDate(flightSearchDTO.getPast(), flightSearchDTO.getArrivalDate()),
                         eqDepartureDate(flightSearchDTO.getPast(), flightSearchDTO.getDepartureDate()))
-                .offset(flightSearchDTO.getPage() * 20)
-                .limit(20)
+                .offset(flightSearchDTO.getPage() * LIMIT)
+                .limit(LIMIT)
                 .fetch();
     }
 

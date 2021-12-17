@@ -1,7 +1,9 @@
 package com.ljy.flightreservation.services.flight.domain;
 
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
+import com.ljy.flightreservation.services.flight.domain.value.infra.BasePriceConverter;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,6 +21,10 @@ public class Flight {
     @Id
     @GeneratedValue
     private Long seq;
+
+    // 기본 가격
+    @Convert(converter = BasePriceConverter.class)
+    private BasePrice basePrice;
 
     // 비행기 정보
     @Embedded
@@ -39,9 +45,11 @@ public class Flight {
     private FlightState state;
 
     @Builder
-    public Flight(AirplaneInfo airplaneInfo,
+    public Flight(BasePrice basePrice,
+                  AirplaneInfo airplaneInfo,
                   FlightDetail flightDetail,
                   NeedPassport needPassport) {
+        this.basePrice = basePrice;
         this.airplaneInfo = airplaneInfo;
         this.flightDetail = flightDetail;
         this.needPassport = needPassport;
@@ -50,6 +58,7 @@ public class Flight {
     public FlightModel toModel() {
         return FlightModel.builder()
                 .seq(seq)
+                .basePrice(basePrice)
                 .flightDetail(flightDetail)
                 .airplaneInfo(airplaneInfo)
                 .needPassport(needPassport)

@@ -15,7 +15,7 @@ public class BasePrice {
 
     public static BasePrice won(long won) {
         if(won < 100){
-            throw new InvalidFightInfoException("invalid base price");
+            throw new InvalidFightInfoException("기본 가격은 100원 이상 입력해주세요.");
         }
         return new BasePrice(won);
     }

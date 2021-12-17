@@ -1,6 +1,7 @@
 package com.ljy.flightreservation.services.flight.domain;
 
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,6 +64,7 @@ public class Flight_Test {
     void newFlight(){
         // when
         Flight flight = Flight.builder()
+                .basePrice(BasePrice.won(500000))
                 .airplaneInfo(AirplaneInfo.builder()
                         .code("airplaneCode")
                         .build())

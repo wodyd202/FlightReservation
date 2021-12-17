@@ -31,8 +31,9 @@ public class FlightService_Test extends FlightIntegrationTest {
     @DisplayName("운항 정보 등록")
     void register(){
         // given
-        saveAirplane("airplaneCode");
+        saveAirplane("registerCode");
         RegisterFlight registerFlight = RegisterFlight.builder()
+                .basePrice(400000)
                 .flightDetail(ChangeFlightDetail.builder()
                         .arrivalDate(LocalDate.now())
                         .estimatedArrivalTime(23)
@@ -41,14 +42,15 @@ public class FlightService_Test extends FlightIntegrationTest {
                         .departureTime(21)
                         .build())
                 .needPassport(NeedPassport.YES)
-                .airplaneCode("airplaneCode")
+                .airplaneCode("registerCode")
                 .build();
 
         // when
         FlightModel flightModel = flightService.register(registerFlight);
 
         // then
-        assertEquals(flightModel.getAirplaneInfo().getCode(), "airplaneCode");
+        assertEquals(flightModel.getAirplaneInfo().getCode(), "registerCode");
+        assertEquals(flightModel.getBasePrice(), 400000);
         assertEquals(flightModel.getFlightDetail().getArrivalDate(), LocalDate.now());
         assertEquals(flightModel.getFlightDetail().getEstimatedArrivalTime(), 23);
         assertEquals(flightModel.getFlightDetail().getArrivalArea(), "제주 공항");
