@@ -1,6 +1,6 @@
-package com.ljy.flightreservation.services.flightInfo.domain.value;
+package com.ljy.flightreservation.services.flight.domain.value;
 
-import com.ljy.flightreservation.services.flightInfo.domain.exception.InvalildFlightInfoException;
+import com.ljy.flightreservation.services.flight.domain.exception.InvalildFlightInfoException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

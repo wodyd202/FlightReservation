@@ -1,7 +1,7 @@
 package com.ljy.flightreservation.services.airplane.domain.value;
 
 import com.ljy.flightreservation.services.airplane.domain.model.SitInfoModel;
-import com.ljy.flightreservation.services.flightInfo.domain.value.SpecialSit;
+import com.ljy.flightreservation.services.flight.domain.value.SpecialSit;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

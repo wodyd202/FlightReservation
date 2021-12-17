@@ -1,6 +1,6 @@
 package com.ljy.flightreservation.services.airplane.domain.value;
 
-import com.ljy.flightreservation.services.flightInfo.domain.infra.SitListConverter;
+import com.ljy.flightreservation.services.flight.domain.infra.SitListConverter;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

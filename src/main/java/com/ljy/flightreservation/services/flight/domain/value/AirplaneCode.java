@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.services.flightInfo.domain.value;
+package com.ljy.flightreservation.services.flight.domain.value;
 
 import lombok.EqualsAndHashCode;
 

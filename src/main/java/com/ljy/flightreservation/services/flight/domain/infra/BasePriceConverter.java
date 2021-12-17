@@ -1,6 +1,6 @@
-package com.ljy.flightreservation.services.flightInfo.domain.infra;
+package com.ljy.flightreservation.services.flight.domain.infra;
 
-import com.ljy.flightreservation.services.flightInfo.domain.value.BasePrice;
+import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 
 import javax.persistence.AttributeConverter;
 

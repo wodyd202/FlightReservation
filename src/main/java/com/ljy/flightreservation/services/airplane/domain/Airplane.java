@@ -7,6 +7,7 @@ import com.ljy.flightreservation.services.airplane.domain.value.SitInfo;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "airplanes")
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Airplane {
     // 항공기 코드

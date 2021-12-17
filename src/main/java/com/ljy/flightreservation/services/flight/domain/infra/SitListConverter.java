@@ -1,8 +1,5 @@
-package com.ljy.flightreservation.services.flightInfo.domain.infra;
+package com.ljy.flightreservation.services.flight.domain.infra;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.AttributeConverter;

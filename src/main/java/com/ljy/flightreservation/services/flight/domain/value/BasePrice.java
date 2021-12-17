@@ -1,6 +1,6 @@
-package com.ljy.flightreservation.services.flightInfo.domain.value;
+package com.ljy.flightreservation.services.flight.domain.value;
 
-import com.ljy.flightreservation.services.flightInfo.domain.exception.InvalidFightInfoException;
+import com.ljy.flightreservation.services.flight.domain.exception.InvalidFightInfoException;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(of = "price")
