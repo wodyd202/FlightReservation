@@ -64,4 +64,15 @@ public class ReservationService {
     public ReservationModel getReservationModel(long reservationSeq, String booker) {
         return reservationRepository.findByIdAndBooker(reservationSeq, booker).orElseThrow(ReservationNotFoundException::new);
     }
+
+    /**
+     * @param flightSeq
+     * # 해당 운항 정보의 이미 예약된 좌석들 가져오기
+     */
+    public ReservationModels getReservationByFlightSeq(long flightSeq) {
+        return ReservationModels.builder()
+                .totalElement(reservationRepository.countByFlightSeq(flightSeq))
+                .reservations(reservationRepository.findByFlightSeq(flightSeq))
+                .build();
+    }
 }

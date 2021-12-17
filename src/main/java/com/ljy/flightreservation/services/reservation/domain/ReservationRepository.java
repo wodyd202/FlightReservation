@@ -14,4 +14,7 @@ public interface ReservationRepository {
     Optional<ReservationModel> findByIdAndBooker(long seq, String booker);
     List<ReservationModel> findAll(ReservationSearchDTO reservationSearchDTO, String booker);
     long countAll(ReservationSearchDTO reservationSearchDTO, String booker);
+
+    List<ReservationModel> findByFlightSeq(long flightSeq);
+    long countByFlightSeq(long flightSeq);
 }

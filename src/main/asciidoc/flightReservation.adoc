@@ -138,3 +138,9 @@ include::{snippets}/get_reservation_list_by_area/http-request.adoc[]
 include::{snippets}/get_reservation_list_by_area/request-parameters.adoc[]
 include::{snippets}/get_reservation_list_by_area/http-response.adoc[]
 include::{snippets}/get_reservation_list_by_area/response-fields.adoc[]
+
+=== 해당 운항 정보에 대한 예약된 좌석들 가져오기
+include::{snippets}/get_reservation_by_flight_seq/http-request.adoc[]
+include::{snippets}/get_reservation_by_flight_seq/path-parameters.adoc[]
+include::{snippets}/get_reservation_by_flight_seq/http-response.adoc[]
+include::{snippets}/get_reservation_by_flight_seq/response-fields.adoc[]

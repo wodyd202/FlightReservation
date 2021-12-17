@@ -19,6 +19,10 @@ public class ReservationModel {
     private String sitCode;
     private String booker;
 
+    public ReservationModel(SitInfo sitInfo){
+        this.sitCode = sitInfo.getCode();
+    }
+
     public ReservationModel(Long seq,
                             FlightInfo flightInfo,
                             LocalDate reservationDate,

@@ -96,6 +96,24 @@ public class QueryReservationRepository implements ReservationRepository {
                 .fetchCount();
     }
 
+    @Override
+    public List<ReservationModel> findByFlightSeq(long flightSeq) {
+        return jpaQueryFactory.select(Projections.constructor(ReservationModel.class,
+                        reservation.sitInfo()
+                ))
+                .from(reservation)
+                .where(reservation.flightInfo().seq.eq(flightSeq).and(reservation.state.eq(ReservationState.RESERVATE)))
+                .fetch();
+    }
+
+    @Override
+    public long countByFlightSeq(long flightSeq) {
+        return jpaQueryFactory.selectOne()
+                .from(reservation)
+                .where(reservation.flightInfo().seq.eq(flightSeq).and(reservation.state.eq(ReservationState.RESERVATE)))
+                .fetchCount();
+    }
+
     private BooleanExpression eqSeq(long seq) {
         return reservation.seq.eq(seq);
     }

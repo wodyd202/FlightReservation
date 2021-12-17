@@ -162,6 +162,36 @@ public class ReservationAPI_Test extends ReservationIntegrationTest {
     }
 
     @Test
+    @DisplayName("해당 운항 정보에 대한 예약된 좌석들 가져오기")
+    void getReservationByFlight() throws Exception {
+        // given
+        ReservationModel reservationModel = newReservation(aReservation().booker(Booker.of("reservemember")));
+
+        // when
+        mockMvc.perform(get("/api/reservation/flight/{flightSeq}",reservationModel.getFlightInfo().getSeq())
+                        .header("X-AUTH-TOKEN",obtainsAccessToken("reservemember","password"))
+                )
+
+        // then
+        .andExpect(status().isOk())
+        .andDo(document("get_reservation_by_flight_seq",
+        pathParameters(
+                parameterWithName("flightSeq").description("운항 정보 고유 번호")
+        ),
+        responseFields(
+                fieldWithPath("reservations").type(ARRAY).description("예약 리스트"),
+                fieldWithPath("reservations[].seq").ignored(),
+                fieldWithPath("reservations[].flightInfo").ignored(),
+                fieldWithPath("reservations[].price").ignored(),
+                fieldWithPath("reservations[].reservationDate").ignored(),
+                fieldWithPath("reservations[].booker").ignored(),
+                fieldWithPath("reservations[].state").ignored(),
+                fieldWithPath("reservations[].sitCode").type(STRING).description("좌석 코드"),
+                fieldWithPath("totalElement").type(NUMBER).description("예약 총 개수")
+        )));
+    }
+
+    @Test
     @DisplayName("예약 목록 가져오기(아직 출발하지 않은)")
     void getReservationModels() throws Exception {
         // when

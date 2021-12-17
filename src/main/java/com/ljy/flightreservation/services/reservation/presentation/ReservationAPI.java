@@ -36,6 +36,16 @@ public class ReservationAPI {
     }
 
     /**
+     * @param flightSeq
+     * # 해당 운항 정보의 이미 예약된 좌석들 가져오기
+     */
+    @GetMapping("flight/{flightSeq}")
+    public ResponseEntity<ReservationModels> getReservationByFlightSeq(@PathVariable long flightSeq){
+        ReservationModels reservationModels = reservationService.getReservationByFlightSeq(flightSeq);
+        return ResponseEntity.ok(reservationModels);
+    }
+
+    /**
      * @param reservationSearchDTO
      * @param principal
      * # 예약 목록 가져오기
