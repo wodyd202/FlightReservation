@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 
 /**
  * 운행 도메인 테스트
@@ -73,8 +74,8 @@ public class Flight_Test {
                         .departureTime(21)
                         .build())
                 .needPassport(NeedPassport.YES)
-                .state(FlightState.IN_OPER)
                 .build();
+        flight.register(mock(RegisterFlightValidator.class));
         FlightModel flightModel = flight.toModel();
 
         // then

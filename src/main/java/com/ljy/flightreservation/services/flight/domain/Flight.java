@@ -41,12 +41,10 @@ public class Flight {
     @Builder
     public Flight(AirplaneInfo airplaneInfo,
                   FlightDetail flightDetail,
-                  NeedPassport needPassport,
-                  FlightState state) {
+                  NeedPassport needPassport) {
         this.airplaneInfo = airplaneInfo;
         this.flightDetail = flightDetail;
         this.needPassport = needPassport;
-        this.state = state;
     }
 
     public FlightModel toModel() {
@@ -57,5 +55,10 @@ public class Flight {
                 .needPassport(needPassport)
                 .state(state)
                 .build();
+    }
+
+    public void register(RegisterFlightValidator registerFlightValidator) {
+        registerFlightValidator.validation(airplaneInfo);
+        state = FlightState.IN_OPER;
     }
 }
