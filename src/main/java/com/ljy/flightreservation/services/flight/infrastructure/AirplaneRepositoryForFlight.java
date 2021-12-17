@@ -1,8 +1,7 @@
 package com.ljy.flightreservation.services.flight.infrastructure;
 
-import com.ljy.flightreservation.services.airplane.domain.QAirplane;
 import com.ljy.flightreservation.services.flight.application.external.AirplaneRepository;
-import com.ljy.flightreservation.services.flight.domain.AirplaneInfo;
+import com.ljy.flightreservation.services.flight.domain.value.AirplaneInfo;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;

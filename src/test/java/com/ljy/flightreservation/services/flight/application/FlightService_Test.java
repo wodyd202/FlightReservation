@@ -1,6 +1,5 @@
 package com.ljy.flightreservation.services.flight.application;
 
-import com.ljy.flightreservation.services.airplane.AirplaneFixture;
 import com.ljy.flightreservation.services.airplane.domain.Airplane;
 import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
 import com.ljy.flightreservation.services.airplane.domain.RegisterAirplaneValidator;
@@ -8,7 +7,7 @@ import com.ljy.flightreservation.services.airplane.domain.value.AirplaneCode;
 import com.ljy.flightreservation.services.flight.FlightIntegrationTest;
 import com.ljy.flightreservation.services.flight.application.model.ChangeFlightDetail;
 import com.ljy.flightreservation.services.flight.application.model.RegisterFlight;
-import com.ljy.flightreservation.services.flight.domain.FlightState;
+import com.ljy.flightreservation.services.flight.domain.value.FlightState;
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
 import org.junit.jupiter.api.DisplayName;

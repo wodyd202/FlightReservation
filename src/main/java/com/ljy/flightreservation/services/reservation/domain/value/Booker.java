@@ -15,25 +15,12 @@ import javax.persistence.Transient;
 public class Booker {
     private String id;
 
-    @Transient
-    private long money;
-
     public static Booker of(String id){
         return new Booker(id);
     }
 
     private Booker(String id) {
         this.id = id;
-    }
-
-    @Builder
-    public Booker(String id, Money money) {
-        this.id = id;
-        this.money = money.get();
-    }
-
-    public boolean ableReservation(TotalPrice totalPrice) {
-        return totalPrice.get() <= money;
     }
 }
 

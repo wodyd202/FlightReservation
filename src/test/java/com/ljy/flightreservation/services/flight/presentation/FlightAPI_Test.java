@@ -1,9 +1,7 @@
 
 package com.ljy.flightreservation.services.flight.presentation;
 
-import com.ljy.flightreservation.services.flight.FlightFixtrue;
 import com.ljy.flightreservation.services.flight.FlightIntegrationTest;
-import com.ljy.flightreservation.services.flight.domain.FlightDetail;
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

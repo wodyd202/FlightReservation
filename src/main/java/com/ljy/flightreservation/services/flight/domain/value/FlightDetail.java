@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.services.flight.domain;
+package com.ljy.flightreservation.services.flight.domain.value;
 
 import com.ljy.flightreservation.services.flight.domain.model.FlightDetailModel;
 import lombok.AccessLevel;

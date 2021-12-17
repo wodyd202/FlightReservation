@@ -1,9 +1,9 @@
 package com.ljy.flightreservation.services.flight.domain.model;
 
 
-import com.ljy.flightreservation.services.flight.domain.AirplaneInfo;
-import com.ljy.flightreservation.services.flight.domain.FlightDetail;
-import com.ljy.flightreservation.services.flight.domain.FlightState;
+import com.ljy.flightreservation.services.flight.domain.value.AirplaneInfo;
+import com.ljy.flightreservation.services.flight.domain.value.FlightDetail;
+import com.ljy.flightreservation.services.flight.domain.value.FlightState;
 import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
 import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
 import lombok.AccessLevel;

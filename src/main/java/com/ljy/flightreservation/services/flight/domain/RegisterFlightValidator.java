@@ -2,6 +2,7 @@ package com.ljy.flightreservation.services.flight.domain;
 
 import com.ljy.flightreservation.services.airplane.domain.exception.AirplaneNotFoundException;
 import com.ljy.flightreservation.services.flight.application.external.AirplaneRepository;
+import com.ljy.flightreservation.services.flight.domain.value.AirplaneInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

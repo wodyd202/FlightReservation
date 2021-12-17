@@ -1,7 +1,9 @@
 package com.ljy.flightreservation.services.reservation.domain.value;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
+import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
+import com.ljy.flightreservation.services.reservation.application.PassportValidator;
+import com.ljy.flightreservation.services.reservation.application.external.MemberInfo;
 import com.ljy.flightreservation.services.reservation.domain.model.FlightInfoModel;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -25,6 +27,9 @@ public class FlightInfo {
     @Transient
     private String airplaneCode;
 
+    @Transient
+    private NeedPassport needPassport;
+
     private LocalDate departureDate;
     private int departureTime;
 
@@ -36,6 +41,7 @@ public class FlightInfo {
     @Builder
     public FlightInfo(long seq,
                       BasePrice basePrice,
+                      NeedPassport needPassport,
                       String airplaneCode,
                       LocalDate departureDate,
                       int departureTime,
@@ -43,6 +49,7 @@ public class FlightInfo {
                       int estimatedArrivalTime,
                       String arrivalArea) {
         this.seq = seq;
+        this.needPassport = needPassport;
         this.basePrice = basePrice.get();
         this.airplaneCode = airplaneCode;
         this.departureDate = departureDate;
@@ -61,5 +68,16 @@ public class FlightInfo {
                 .departureTime(departureTime)
                 .estimatedArrivalTime(estimatedArrivalTime)
                 .build();
+    }
+
+    public boolean ableReservate(MemberInfo member, PassportValidator passportValidator) {
+        if(needPassport.equals(NeedPassport.NO)){
+            return true;
+        }
+        if(member.getPassport() == null){
+            return false;
+        }
+        passportValidator.validation(member.getPassport());
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-package com.ljy.flightreservation.services.flight.domain;
+package com.ljy.flightreservation.services.flight.domain.value;
 
 public enum FlightState {
     // 운행중

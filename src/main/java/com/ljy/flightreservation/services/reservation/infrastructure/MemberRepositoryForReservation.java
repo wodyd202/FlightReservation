@@ -1,8 +1,7 @@
 package com.ljy.flightreservation.services.reservation.infrastructure;
 
-import com.ljy.flightreservation.services.member.domain.QMember;
+import com.ljy.flightreservation.services.reservation.application.external.MemberInfo;
 import com.ljy.flightreservation.services.reservation.application.external.MemberRepository;
-import com.ljy.flightreservation.services.reservation.domain.value.Booker;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
@@ -20,10 +19,11 @@ public class MemberRepositoryForReservation implements MemberRepository {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Booker getMember(String id) {
-        return jpaQueryFactory.select(Projections.constructor(Booker.class,
+    public MemberInfo getMember(String id) {
+        return jpaQueryFactory.select(Projections.constructor(MemberInfo.class,
                         asSimple(id),
-                        member.money))
+                        member.money,
+                        member.memberInfo().passport()))
                 .from(member)
                 .where(member.id().id.eq(id))
                 .fetchFirst();

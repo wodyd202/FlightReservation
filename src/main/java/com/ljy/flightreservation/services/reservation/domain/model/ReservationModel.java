@@ -19,6 +19,16 @@ public class ReservationModel {
     private String sitCode;
     private String booker;
 
+    public ReservationModel(Long seq,
+                            FlightInfo flightInfo,
+                            LocalDate reservationDate,
+                            Booker booker) {
+        this.seq = seq;
+        this.flightInfo = flightInfo.toModel();
+        this.reservationDate = reservationDate;
+        this.booker = booker.getId();
+    }
+
     @Builder
     public ReservationModel(Long seq,
                             FlightInfo flightInfo,
@@ -27,12 +37,9 @@ public class ReservationModel {
                             LocalDate reservationDate,
                             SitInfo sitCode,
                             Booker booker) {
-        this.seq = seq;
-        this.flightInfo = flightInfo.toModel();
+        this(seq, flightInfo, reservationDate, booker);
         this.price = price.get();
         this.state = state;
-        this.reservationDate = reservationDate;
         this.sitCode = sitCode.getCode();
-        this.booker = booker.getId();
     }
 }

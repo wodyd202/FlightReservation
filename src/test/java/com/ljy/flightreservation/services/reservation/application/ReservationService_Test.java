@@ -1,18 +1,8 @@
 package com.ljy.flightreservation.services.reservation.application;
 
-import com.ljy.flightreservation.services.airplane.domain.Airplane;
-import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
-import com.ljy.flightreservation.services.airplane.domain.RegisterAirplaneValidator;
 import com.ljy.flightreservation.services.airplane.domain.value.*;
-import com.ljy.flightreservation.services.flight.domain.AirplaneInfo;
-import com.ljy.flightreservation.services.flight.domain.Flight;
-import com.ljy.flightreservation.services.flight.domain.FlightRepository;
-import com.ljy.flightreservation.services.flight.domain.RegisterFlightValidator;
+import com.ljy.flightreservation.services.flight.domain.value.AirplaneInfo;
 import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
-import com.ljy.flightreservation.services.member.domain.Member;
-import com.ljy.flightreservation.services.member.domain.MemberRepository;
-import com.ljy.flightreservation.services.member.domain.RegisterMemberValidator;
-import com.ljy.flightreservation.services.member.domain.model.MemberModel;
 import com.ljy.flightreservation.services.member.domain.value.MemberId;
 import com.ljy.flightreservation.services.member.domain.value.Money;
 import com.ljy.flightreservation.services.reservation.ReservationIntegrationTest;

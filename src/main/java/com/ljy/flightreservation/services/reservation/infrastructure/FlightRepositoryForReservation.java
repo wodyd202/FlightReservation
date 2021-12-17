@@ -25,6 +25,7 @@ public class FlightRepositoryForReservation implements FlightRepository {
                 jpaQueryFactory.select(Projections.constructor(FlightInfo.class,
                                 flight.seq,
                                 flight.basePrice,
+                                flight.needPassport,
                                 flight.airplaneInfo().code,
                                 flight.flightDetail().departureDate,
                                 flight.flightDetail().departureTime,

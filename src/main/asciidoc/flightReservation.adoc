@@ -114,3 +114,27 @@ include::{snippets}/reserve/http-request.adoc[]
 include::{snippets}/reserve/request-body.adoc[]
 include::{snippets}/reserve/request-fields.adoc[]
 include::{snippets}/reserve/response-body.adoc[]
+
+=== 예약 상세 정보 조회
+include::{snippets}/get_reservation/http-request.adoc[]
+include::{snippets}/get_reservation/path-parameters.adoc[]
+include::{snippets}/get_reservation/http-response.adoc[]
+include::{snippets}/get_reservation/response-fields.adoc[]
+
+=== 아직 출발하지 않은 예약 리스트 조회
+include::{snippets}/get_reservation_list/http-request.adoc[]
+include::{snippets}/get_reservation_list/request-parameters.adoc[]
+include::{snippets}/get_reservation_list_by_area/http-response.adoc[]
+include::{snippets}/get_reservation_list_by_area/response-fields.adoc[]
+
+=== 지난 예약 리스트 조회
+include::{snippets}/get_reservation_list_by_past/http-request.adoc[]
+include::{snippets}/get_reservation_list_by_past/request-parameters.adoc[]
+include::{snippets}/get_reservation_list_by_area/http-response.adoc[]
+include::{snippets}/get_reservation_list_by_area/response-fields.adoc[]
+
+=== 특정 지역으로 간 예약 리스트 조회
+include::{snippets}/get_reservation_list_by_area/http-request.adoc[]
+include::{snippets}/get_reservation_list_by_area/request-parameters.adoc[]
+include::{snippets}/get_reservation_list_by_area/http-response.adoc[]
+include::{snippets}/get_reservation_list_by_area/response-fields.adoc[]

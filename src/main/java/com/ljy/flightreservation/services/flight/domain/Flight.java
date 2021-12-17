@@ -1,8 +1,7 @@
 package com.ljy.flightreservation.services.flight.domain;
 
 import com.ljy.flightreservation.services.flight.domain.model.FlightModel;
-import com.ljy.flightreservation.services.flight.domain.value.BasePrice;
-import com.ljy.flightreservation.services.flight.domain.value.NeedPassport;
+import com.ljy.flightreservation.services.flight.domain.value.*;
 import com.ljy.flightreservation.services.flight.domain.value.infra.BasePriceConverter;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
