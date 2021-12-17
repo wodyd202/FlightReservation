@@ -30,18 +30,12 @@ import static com.ljy.flightreservation.services.flight.FlightFixtrue.aFlight;
 import static com.ljy.flightreservation.services.member.MemberFixture.aMember;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 
 /**
  * 예약 서비스 테스트
  */
 public class ReservationService_Test extends ReservationIntegrationTest {
     @Autowired ReservationService reservationService;
-
-    // external
-    @Autowired FlightRepository flightRepository;
-    @Autowired AirplaneRepository airplaneRepository;
-    @Autowired MemberRepository memberRepository;
 
     @Test
     @DisplayName("회원의 잔액이 부족할 경우 에러")
@@ -198,28 +192,5 @@ public class ReservationService_Test extends ReservationIntegrationTest {
 
         // then
         assertEquals(reservationModel.getPrice(), 130_000);
-    }
-
-    void newMember(Member.MemberBuilder memberBuilder, Money money){
-        Member member = memberBuilder.build();
-        member.deposit(money);
-        member.register(mock(RegisterMemberValidator.class));
-        MemberModel memberModel = member.toModel();
-        if(!memberRepository.findById(MemberId.of(memberModel.getId())).isPresent()){
-            memberRepository.save(member);
-        }
-    }
-
-    private void newAirplane(Airplane.AirplaneBuilder airplaneBuilder) {
-        Airplane airplane = airplaneBuilder.build();
-        airplane.register(mock(RegisterAirplaneValidator.class));
-        airplaneRepository.save(airplane);
-    }
-
-    private long newFlight(Flight.FlightBuilder flightBuilder) {
-        Flight flight = flightBuilder.build();
-        flight.register(mock(RegisterFlightValidator.class));
-        flightRepository.save(flight);
-        return flight.toModel().getSeq();
     }
 }

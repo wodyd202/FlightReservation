@@ -104,3 +104,13 @@ include::{snippets}/get_flight_list_by_past/http-request.adoc[]
 include::{snippets}/get_flight_list_by_past/request-parameters.adoc[]
 include::{snippets}/get_flight_list/http-response.adoc[]
 include::{snippets}/get_flight_list/response-fields.adoc[]
+
+[[api]]
+== Reservation API
+예약 관련 API
+
+=== 예약
+include::{snippets}/reserve/http-request.adoc[]
+include::{snippets}/reserve/request-body.adoc[]
+include::{snippets}/reserve/request-fields.adoc[]
+include::{snippets}/reserve/response-body.adoc[]
