@@ -19,3 +19,5 @@
 git clone https://github.com/wodyd202/FlightReservation.git
 mvn clean spring-boot:run
 ```
+
+https://user-images.githubusercontent.com/77535935/146679204-02467761-5a2c-404a-a1b7-2d70e726559b.jpg
