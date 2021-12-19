@@ -1,4 +1,4 @@
-# <a href="https://wodyd202.github.io/FlightReservation/flightReservation.html">FlightReservation</a>
+# <a href="https://wodyd202.github.io/FlightReservation/flightReservation.html">FlightReservation(API)</a>
 항공 예약 시스템
 <br><br>
 
