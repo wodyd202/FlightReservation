@@ -1,5 +1,5 @@
 # <a href="https://wodyd202.github.io/FlightReservation/flightReservation.html">FlightReservation(API)</a>
-항공 예약 시스템
+항공 예약 시스템을 DDD를 적용해 제작한 프로젝트
 <br><br>
 
 
