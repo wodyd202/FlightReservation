@@ -1,4 +1,4 @@
-# <a href="https://wodyd202.github.io/FlightReservation/flightReservation.html">FlightReservation</a>
+# <a href="https://wodyd202.github.io/FlightReservation/flightReservation.html">FlightReservation(API)</a>
 항공 예약 시스템
 <br><br>
 
@@ -19,3 +19,5 @@
 git clone https://github.com/wodyd202/FlightReservation.git
 mvn clean spring-boot:run
 ```
+
+![도메인-설계](https://user-images.githubusercontent.com/77535935/146679204-02467761-5a2c-404a-a1b7-2d70e726559b.jpg)
