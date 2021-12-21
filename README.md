@@ -10,7 +10,7 @@
 - DDD, TDD
 - jacoco
 
-<a href="https://coveralls.io/jobs/91758654"><img src="https://coveralls.io/repos/github/wodyd202/FlightReservation/badge.svg" alt="Coverage Status" /></a>
+<a href="https://coveralls.io/jobs/91758654"><img src="https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_87.svg" alt="Coverage Status" /></a>
 
 ##
 
