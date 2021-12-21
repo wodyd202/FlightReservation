@@ -33,15 +33,7 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                 .content(convertJson(registerMember)))
 
         // then
-        .andExpect(status().isCreated())
-        .andDo(document("register_member",
-        requestFields(
-                fieldWithPath("id").type(STRING).description("회원 아이디"),
-                fieldWithPath("password").type(STRING).description("회원 비밀번호"),
-                fieldWithPath("memberInfo").type(OBJECT).description("회원 정보"),
-                fieldWithPath("memberInfo.email").type(STRING).description("회원 이메일"),
-                fieldWithPath("memberInfo.passport").type(STRING).description("회원 여권 번호").optional()
-        )));
+        .andExpect(status().isCreated());
     }
 
     @Test
@@ -174,16 +166,7 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                 .content(convertJson(changeMember)))
 
         // then
-        .andExpect(status().isOk())
-        .andDo(document("change_member_email",
-        requestHeaders(
-            headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
-        ),
-        requestFields(
-                fieldWithPath("email").type(STRING).description("회원 이메일"),
-                fieldWithPath("changePassword").ignored(),
-                fieldWithPath("passport").ignored()
-        )));
+        .andExpect(status().isOk());
     }
 
     @Test
@@ -219,16 +202,7 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                         .content(convertJson(changeMember)))
 
         // then
-        .andExpect(status().isOk())
-        .andDo(document("change_member_passport",
-        requestHeaders(
-                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
-        ),
-        requestFields(
-                fieldWithPath("passport").type(STRING).description("여권 번호"),
-                fieldWithPath("changePassword").ignored(),
-                fieldWithPath("email").ignored()
-        )));
+        .andExpect(status().isOk());
     }
 
     @Test
@@ -285,18 +259,7 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                         .content(convertJson(changeMember)))
 
         // then
-        .andExpect(status().isOk())
-        .andDo(document("change_member_password",
-        requestHeaders(
-                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
-        ),
-        requestFields(
-                fieldWithPath("changePassword").type(OBJECT).description("비밀번호 변경시 사용되는 JSON"),
-                fieldWithPath("changePassword.originPassword").type(STRING).description("기존 비밀번호"),
-                fieldWithPath("changePassword.changePassword").type(STRING).description("변경할 비밀번호"),
-                fieldWithPath("passport").ignored(),
-                fieldWithPath("email").ignored()
-        )));
+        .andExpect(status().isOk());
     }
 
     @Test
@@ -364,14 +327,7 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                 .content(convertJson(withdrawalMember)))
 
         // then
-        .andExpect(status().isOk())
-        .andDo(document("withdrawal_member",
-        requestHeaders(
-                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
-        ),
-        requestFields(
-                fieldWithPath("originPassword").type(STRING).description("기존 비밀번호")
-        )));
+        .andExpect(status().isOk());
     }
 
     @Test
@@ -382,19 +338,6 @@ public class MemberAPI_Test extends MemberIntegrationTest {
                 .header("X-AUTH-TOKEN",obtainsAccessToken("apichangemember","password")))
 
         // then
-        .andExpect(status().isOk())
-        .andDo(document("get_member",
-        requestHeaders(
-                headerWithName("X-AUTH-TOKEN").description("jwt 토큰")
-        ),
-        responseFields(
-                fieldWithPath("id").type(STRING).description("회원 아이디"),
-                fieldWithPath("memberInfo").type(OBJECT).description("회원 정보"),
-                fieldWithPath("memberInfo.email").type(STRING).description("회원 이메일"),
-                fieldWithPath("memberInfo.passport").type(STRING).description("회원 여권 번호").optional(),
-                fieldWithPath("money").type(NUMBER).description("가진 금액"),
-                fieldWithPath("state").type(STRING).description("회원 상태"),
-                fieldWithPath("createDateTime").type(STRING).description("회원 등록일")
-        )));
+        .andExpect(status().isOk());
     }
 }

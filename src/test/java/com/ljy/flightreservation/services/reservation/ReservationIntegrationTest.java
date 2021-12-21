@@ -4,7 +4,6 @@ import com.ljy.flightreservation.IntegrationTest;
 import com.ljy.flightreservation.services.airplane.domain.Airplane;
 import com.ljy.flightreservation.services.airplane.domain.AirplaneRepository;
 import com.ljy.flightreservation.services.airplane.domain.RegisterAirplaneValidator;
-import com.ljy.flightreservation.services.airplane.domain.value.AirplaneCode;
 import com.ljy.flightreservation.services.flight.domain.Flight;
 import com.ljy.flightreservation.services.flight.domain.FlightRepository;
 import com.ljy.flightreservation.services.flight.domain.RegisterFlightValidator;

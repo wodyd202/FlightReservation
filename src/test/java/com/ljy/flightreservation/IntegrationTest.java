@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@AutoConfigureRestDocs
 @AutoConfigureMockMvc
 @SpringBootTest
 abstract public class IntegrationTest {
