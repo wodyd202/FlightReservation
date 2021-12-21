@@ -7,6 +7,7 @@
 - Spring Boot2
 - Junit5
 - JPA, Querydsl
+- H2
 - DDD, TDD
 - jacoco
 
